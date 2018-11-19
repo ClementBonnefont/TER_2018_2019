@@ -1,9 +1,7 @@
 #include <QApplication>
-//#include <iostream>
+#include "../../ProtoInterfaceCmd/ProtoInterfaceCmd/protointerface.h"
 #include <QDebug>
 #include "machineaetat.h"
-
-//using namespace std;
 
 int main(int argc, char *argv[])
 {
@@ -11,11 +9,9 @@ int main(int argc, char *argv[])
     Carton carton;
     InterfaceDonnees interface;
     InterfaceDonnees::CARTON_EN_COURS = carton;
+    ProtoInterface w;
     MachineAEtat mae;
-
-    mae.activer();
-    while(InterfaceDonnees::FIN == false) {
-        qDebug() << mae.getEtatPresent();
-    }
+    //w.show();
+    //mae.activer();
     return app.exec();
 }
