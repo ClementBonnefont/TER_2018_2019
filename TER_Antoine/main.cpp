@@ -11,7 +11,8 @@ int main(int argc, char *argv[])
     InterfaceDonnees::CARTON_EN_COURS = carton;
     ProtoInterface w;
     MachineAEtat mae;
-    //w.show();
-    //mae.activer();
+    w.show();
+    mae.activer();
+
     return app.exec();
 }
