@@ -15,15 +15,10 @@
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QStatusBar>
-#include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -59,34 +54,19 @@ public:
     QCheckBox *cmdE_15;
     QCheckBox *cmdE_14;
     QCheckBox *cmdE_13;
-    QWidget *gridLayoutWidget_3;
-    QGridLayout *grilleDelais;
-    QSlider *horizontalSlider;
-    QLCDNumber *lcdTpsRestant;
-    QLabel *lTempsRestant;
-    QLabel *lChoixduree;
-    QWidget *gridLayoutWidget_4;
-    QGridLayout *grilleActions;
-    QPushButton *bUnSetAll;
-    QPushButton *bLancerSequence;
-    QPushButton *bArretTension;
-    QPushButton *bSetAll;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *grilleTitre;
     QSpacerItem *horizontalSpacer;
     QLabel *lTitre;
     QSpacerItem *horizontalSpacer_2;
-    QWidget *gridLayoutWidget_2;
-    QGridLayout *grilleVisu;
-    QLabel *lVisuVal1_8;
-    QLabel *lVisuText1_8;
-    QLabel *lVisu9_16;
-    QLabel *lVisuText9_16;
-    QLabel *lVisuVal17_24;
-    QLabel *lVisuText17_24;
-    QMenuBar *menuBar;
-    QToolBar *mainToolBar;
-    QStatusBar *statusBar;
+    QWidget *gridLayoutWidget_5;
+    QGridLayout *grilleActions_2;
+    QPushButton *bUrgence;
+    QPushButton *bPause;
+    QPushButton *bReprise;
+    QPushButton *bFin;
+    QPushButton *bDebut;
+    QLabel *lVisuEtatMAE;
 
     void setupUi(QMainWindow *ProtoInterface)
     {
@@ -97,12 +77,12 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         fenetreConteneur = new QFrame(centralWidget);
         fenetreConteneur->setObjectName(QStringLiteral("fenetreConteneur"));
-        fenetreConteneur->setGeometry(QRect(0, 10, 751, 491));
+        fenetreConteneur->setGeometry(QRect(-20, 20, 751, 551));
         fenetreConteneur->setFrameShape(QFrame::StyledPanel);
         fenetreConteneur->setFrameShadow(QFrame::Raised);
         gridLayoutWidget = new QWidget(fenetreConteneur);
         gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(9, 45, 241, 434));
+        gridLayoutWidget->setGeometry(QRect(80, 70, 241, 434));
         grilleCmdeAimants1 = new QGridLayout(gridLayoutWidget);
         grilleCmdeAimants1->setSpacing(6);
         grilleCmdeAimants1->setContentsMargins(11, 11, 11, 11);
@@ -252,75 +232,9 @@ public:
 
         grilleCmdeAimants1->addWidget(cmdE_13, 0, 1, 1, 1);
 
-        gridLayoutWidget_3 = new QWidget(fenetreConteneur);
-        gridLayoutWidget_3->setObjectName(QStringLiteral("gridLayoutWidget_3"));
-        gridLayoutWidget_3->setGeometry(QRect(280, 50, 135, 241));
-        grilleDelais = new QGridLayout(gridLayoutWidget_3);
-        grilleDelais->setSpacing(6);
-        grilleDelais->setContentsMargins(11, 11, 11, 11);
-        grilleDelais->setObjectName(QStringLiteral("grilleDelais"));
-        grilleDelais->setContentsMargins(0, 0, 0, 0);
-        horizontalSlider = new QSlider(gridLayoutWidget_3);
-        horizontalSlider->setObjectName(QStringLiteral("horizontalSlider"));
-        horizontalSlider->setEnabled(true);
-        horizontalSlider->setContextMenuPolicy(Qt::NoContextMenu);
-        horizontalSlider->setMaximum(3);
-        horizontalSlider->setPageStep(1);
-        horizontalSlider->setOrientation(Qt::Horizontal);
-        horizontalSlider->setInvertedAppearance(false);
-        horizontalSlider->setTickPosition(QSlider::TicksAbove);
-
-        grilleDelais->addWidget(horizontalSlider, 8, 2, 1, 1);
-
-        lcdTpsRestant = new QLCDNumber(gridLayoutWidget_3);
-        lcdTpsRestant->setObjectName(QStringLiteral("lcdTpsRestant"));
-        lcdTpsRestant->setSmallDecimalPoint(true);
-        lcdTpsRestant->setMode(QLCDNumber::Dec);
-        lcdTpsRestant->setProperty("intValue", QVariant(0));
-
-        grilleDelais->addWidget(lcdTpsRestant, 3, 2, 1, 1);
-
-        lTempsRestant = new QLabel(gridLayoutWidget_3);
-        lTempsRestant->setObjectName(QStringLiteral("lTempsRestant"));
-
-        grilleDelais->addWidget(lTempsRestant, 2, 2, 1, 1);
-
-        lChoixduree = new QLabel(gridLayoutWidget_3);
-        lChoixduree->setObjectName(QStringLiteral("lChoixduree"));
-
-        grilleDelais->addWidget(lChoixduree, 7, 2, 1, 1);
-
-        gridLayoutWidget_4 = new QWidget(fenetreConteneur);
-        gridLayoutWidget_4->setObjectName(QStringLiteral("gridLayoutWidget_4"));
-        gridLayoutWidget_4->setGeometry(QRect(280, 300, 451, 181));
-        grilleActions = new QGridLayout(gridLayoutWidget_4);
-        grilleActions->setSpacing(6);
-        grilleActions->setContentsMargins(11, 11, 11, 11);
-        grilleActions->setObjectName(QStringLiteral("grilleActions"));
-        grilleActions->setContentsMargins(0, 0, 0, 0);
-        bUnSetAll = new QPushButton(gridLayoutWidget_4);
-        bUnSetAll->setObjectName(QStringLiteral("bUnSetAll"));
-
-        grilleActions->addWidget(bUnSetAll, 1, 1, 1, 1);
-
-        bLancerSequence = new QPushButton(gridLayoutWidget_4);
-        bLancerSequence->setObjectName(QStringLiteral("bLancerSequence"));
-
-        grilleActions->addWidget(bLancerSequence, 0, 0, 1, 1);
-
-        bArretTension = new QPushButton(gridLayoutWidget_4);
-        bArretTension->setObjectName(QStringLiteral("bArretTension"));
-
-        grilleActions->addWidget(bArretTension, 0, 1, 1, 1);
-
-        bSetAll = new QPushButton(gridLayoutWidget_4);
-        bSetAll->setObjectName(QStringLiteral("bSetAll"));
-
-        grilleActions->addWidget(bSetAll, 1, 0, 1, 1);
-
         horizontalLayoutWidget = new QWidget(fenetreConteneur);
         horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(10, 0, 721, 41));
+        horizontalLayoutWidget->setGeometry(QRect(30, 10, 721, 41));
         grilleTitre = new QHBoxLayout(horizontalLayoutWidget);
         grilleTitre->setSpacing(6);
         grilleTitre->setContentsMargins(11, 11, 11, 11);
@@ -344,55 +258,43 @@ public:
 
         grilleTitre->addItem(horizontalSpacer_2);
 
-        gridLayoutWidget_2 = new QWidget(fenetreConteneur);
-        gridLayoutWidget_2->setObjectName(QStringLiteral("gridLayoutWidget_2"));
-        gridLayoutWidget_2->setGeometry(QRect(420, 50, 311, 241));
-        grilleVisu = new QGridLayout(gridLayoutWidget_2);
-        grilleVisu->setSpacing(6);
-        grilleVisu->setContentsMargins(11, 11, 11, 11);
-        grilleVisu->setObjectName(QStringLiteral("grilleVisu"));
-        grilleVisu->setContentsMargins(0, 0, 0, 0);
-        lVisuVal1_8 = new QLabel(gridLayoutWidget_2);
-        lVisuVal1_8->setObjectName(QStringLiteral("lVisuVal1_8"));
+        gridLayoutWidget_5 = new QWidget(fenetreConteneur);
+        gridLayoutWidget_5->setObjectName(QStringLiteral("gridLayoutWidget_5"));
+        gridLayoutWidget_5->setGeometry(QRect(350, 80, 381, 181));
+        grilleActions_2 = new QGridLayout(gridLayoutWidget_5);
+        grilleActions_2->setSpacing(6);
+        grilleActions_2->setContentsMargins(11, 11, 11, 11);
+        grilleActions_2->setObjectName(QStringLiteral("grilleActions_2"));
+        grilleActions_2->setContentsMargins(0, 0, 0, 0);
+        bUrgence = new QPushButton(gridLayoutWidget_5);
+        bUrgence->setObjectName(QStringLiteral("bUrgence"));
 
-        grilleVisu->addWidget(lVisuVal1_8, 0, 0, 1, 1);
+        grilleActions_2->addWidget(bUrgence, 2, 1, 1, 1);
 
-        lVisuText1_8 = new QLabel(gridLayoutWidget_2);
-        lVisuText1_8->setObjectName(QStringLiteral("lVisuText1_8"));
+        bPause = new QPushButton(gridLayoutWidget_5);
+        bPause->setObjectName(QStringLiteral("bPause"));
 
-        grilleVisu->addWidget(lVisuText1_8, 1, 0, 1, 1);
+        grilleActions_2->addWidget(bPause, 1, 0, 1, 1);
 
-        lVisu9_16 = new QLabel(gridLayoutWidget_2);
-        lVisu9_16->setObjectName(QStringLiteral("lVisu9_16"));
+        bReprise = new QPushButton(gridLayoutWidget_5);
+        bReprise->setObjectName(QStringLiteral("bReprise"));
 
-        grilleVisu->addWidget(lVisu9_16, 0, 1, 1, 1);
+        grilleActions_2->addWidget(bReprise, 1, 1, 1, 1);
 
-        lVisuText9_16 = new QLabel(gridLayoutWidget_2);
-        lVisuText9_16->setObjectName(QStringLiteral("lVisuText9_16"));
+        bFin = new QPushButton(gridLayoutWidget_5);
+        bFin->setObjectName(QStringLiteral("bFin"));
 
-        grilleVisu->addWidget(lVisuText9_16, 1, 1, 1, 1);
+        grilleActions_2->addWidget(bFin, 0, 1, 1, 1);
 
-        lVisuVal17_24 = new QLabel(gridLayoutWidget_2);
-        lVisuVal17_24->setObjectName(QStringLiteral("lVisuVal17_24"));
+        bDebut = new QPushButton(gridLayoutWidget_5);
+        bDebut->setObjectName(QStringLiteral("bDebut"));
 
-        grilleVisu->addWidget(lVisuVal17_24, 0, 2, 1, 1);
+        grilleActions_2->addWidget(bDebut, 0, 0, 1, 1);
 
-        lVisuText17_24 = new QLabel(gridLayoutWidget_2);
-        lVisuText17_24->setObjectName(QStringLiteral("lVisuText17_24"));
-
-        grilleVisu->addWidget(lVisuText17_24, 1, 2, 1, 1);
-
+        lVisuEtatMAE = new QLabel(fenetreConteneur);
+        lVisuEtatMAE->setObjectName(QStringLiteral("lVisuEtatMAE"));
+        lVisuEtatMAE->setGeometry(QRect(350, 320, 361, 71));
         ProtoInterface->setCentralWidget(centralWidget);
-        menuBar = new QMenuBar(ProtoInterface);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 747, 26));
-        ProtoInterface->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(ProtoInterface);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        ProtoInterface->addToolBar(Qt::TopToolBarArea, mainToolBar);
-        statusBar = new QStatusBar(ProtoInterface);
-        statusBar->setObjectName(QStringLiteral("statusBar"));
-        ProtoInterface->setStatusBar(statusBar);
         QWidget::setTabOrder(cmdE_1, cmdE_2);
         QWidget::setTabOrder(cmdE_2, cmdE_3);
         QWidget::setTabOrder(cmdE_3, cmdE_4);
@@ -416,11 +318,6 @@ public:
         QWidget::setTabOrder(cmdE_21, cmdE_22);
         QWidget::setTabOrder(cmdE_22, cmdE_23);
         QWidget::setTabOrder(cmdE_23, cmdE_24);
-        QWidget::setTabOrder(cmdE_24, horizontalSlider);
-        QWidget::setTabOrder(horizontalSlider, bSetAll);
-        QWidget::setTabOrder(bSetAll, bUnSetAll);
-        QWidget::setTabOrder(bUnSetAll, bLancerSequence);
-        QWidget::setTabOrder(bLancerSequence, bArretTension);
 
         retranslateUi(ProtoInterface);
 
@@ -454,19 +351,13 @@ public:
         cmdE_15->setText(QApplication::translate("ProtoInterface", "Cadre 15", nullptr));
         cmdE_14->setText(QApplication::translate("ProtoInterface", "Cadre 14", nullptr));
         cmdE_13->setText(QApplication::translate("ProtoInterface", "Cadre 13", nullptr));
-        lTempsRestant->setText(QApplication::translate("ProtoInterface", "Temps restant levage :", nullptr));
-        lChoixduree->setText(QApplication::translate("ProtoInterface", "Choix dur\303\251e levage", nullptr));
-        bUnSetAll->setText(QApplication::translate("ProtoInterface", "UnSetAll", nullptr));
-        bLancerSequence->setText(QApplication::translate("ProtoInterface", "Lancer la S\303\251quence", nullptr));
-        bArretTension->setText(QApplication::translate("ProtoInterface", "Arret Tension", nullptr));
-        bSetAll->setText(QApplication::translate("ProtoInterface", "SetAll", nullptr));
-        lTitre->setText(QApplication::translate("ProtoInterface", "Programme de test de la commande des \303\251lectro-aimants", nullptr));
-        lVisuVal1_8->setText(QApplication::translate("ProtoInterface", "TextLabel", nullptr));
-        lVisuText1_8->setText(QApplication::translate("ProtoInterface", "TextLabel", nullptr));
-        lVisu9_16->setText(QApplication::translate("ProtoInterface", "TextLabel", nullptr));
-        lVisuText9_16->setText(QApplication::translate("ProtoInterface", "TextLabel", nullptr));
-        lVisuVal17_24->setText(QApplication::translate("ProtoInterface", "TextLabel", nullptr));
-        lVisuText17_24->setText(QApplication::translate("ProtoInterface", "TextLabel", nullptr));
+        lTitre->setText(QApplication::translate("ProtoInterface", "Programme de test du comportement du m\303\251tier \303\240 tisser", nullptr));
+        bUrgence->setText(QApplication::translate("ProtoInterface", "Arret Urgence", nullptr));
+        bPause->setText(QApplication::translate("ProtoInterface", "Pause Tissage", nullptr));
+        bReprise->setText(QApplication::translate("ProtoInterface", "Reprise Tissage", nullptr));
+        bFin->setText(QApplication::translate("ProtoInterface", "Fin Tissage", nullptr));
+        bDebut->setText(QApplication::translate("ProtoInterface", "D\303\251but Tissage", nullptr));
+        lVisuEtatMAE->setText(QApplication::translate("ProtoInterface", "Visualisation Etat MAE", nullptr));
     } // retranslateUi
 
 };

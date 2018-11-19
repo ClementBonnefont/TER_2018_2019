@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ProtoInterface_t {
-    QByteArrayData data[34];
-    char stringdata0[732];
+    QByteArrayData data[32];
+    char stringdata0[680];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -58,13 +58,11 @@ QT_MOC_LITERAL(23, 492, 23), // "on_cmdE_21_stateChanged"
 QT_MOC_LITERAL(24, 516, 23), // "on_cmdE_22_stateChanged"
 QT_MOC_LITERAL(25, 540, 23), // "on_cmdE_23_stateChanged"
 QT_MOC_LITERAL(26, 564, 23), // "on_cmdE_24_stateChanged"
-QT_MOC_LITERAL(27, 588, 32), // "on_horizontalSlider_valueChanged"
-QT_MOC_LITERAL(28, 621, 5), // "value"
-QT_MOC_LITERAL(29, 627, 18), // "on_bSetAll_clicked"
-QT_MOC_LITERAL(30, 646, 20), // "on_bUnSetAll_clicked"
-QT_MOC_LITERAL(31, 667, 24), // "on_bArretTension_clicked"
-QT_MOC_LITERAL(32, 692, 12), // "startProgram"
-QT_MOC_LITERAL(33, 705, 26) // "on_bLancerSequence_clicked"
+QT_MOC_LITERAL(27, 588, 17), // "on_bDebut_clicked"
+QT_MOC_LITERAL(28, 606, 15), // "on_bFin_clicked"
+QT_MOC_LITERAL(29, 622, 17), // "on_bPause_clicked"
+QT_MOC_LITERAL(30, 640, 19), // "on_bReprise_clicked"
+QT_MOC_LITERAL(31, 660, 19) // "on_bUrgence_clicked"
 
     },
     "ProtoInterface\0on_cmdE_1_stateChanged\0"
@@ -80,10 +78,9 @@ QT_MOC_LITERAL(33, 705, 26) // "on_bLancerSequence_clicked"
     "on_cmdE_19_stateChanged\0on_cmdE_20_stateChanged\0"
     "on_cmdE_21_stateChanged\0on_cmdE_22_stateChanged\0"
     "on_cmdE_23_stateChanged\0on_cmdE_24_stateChanged\0"
-    "on_horizontalSlider_valueChanged\0value\0"
-    "on_bSetAll_clicked\0on_bUnSetAll_clicked\0"
-    "on_bArretTension_clicked\0startProgram\0"
-    "on_bLancerSequence_clicked"
+    "on_bDebut_clicked\0on_bFin_clicked\0"
+    "on_bPause_clicked\0on_bReprise_clicked\0"
+    "on_bUrgence_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -93,7 +90,7 @@ static const uint qt_meta_data_ProtoInterface[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      30,   14, // methods
+      29,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -101,36 +98,35 @@ static const uint qt_meta_data_ProtoInterface[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    1,  164,    2, 0x08 /* Private */,
-       4,    1,  167,    2, 0x08 /* Private */,
-       5,    1,  170,    2, 0x08 /* Private */,
-       6,    1,  173,    2, 0x08 /* Private */,
-       7,    1,  176,    2, 0x08 /* Private */,
-       8,    1,  179,    2, 0x08 /* Private */,
-       9,    1,  182,    2, 0x08 /* Private */,
-      10,    1,  185,    2, 0x08 /* Private */,
-      11,    1,  188,    2, 0x08 /* Private */,
-      12,    1,  191,    2, 0x08 /* Private */,
-      13,    1,  194,    2, 0x08 /* Private */,
-      14,    1,  197,    2, 0x08 /* Private */,
-      15,    1,  200,    2, 0x08 /* Private */,
-      16,    1,  203,    2, 0x08 /* Private */,
-      17,    1,  206,    2, 0x08 /* Private */,
-      18,    1,  209,    2, 0x08 /* Private */,
-      19,    1,  212,    2, 0x08 /* Private */,
-      20,    1,  215,    2, 0x08 /* Private */,
-      21,    1,  218,    2, 0x08 /* Private */,
-      22,    1,  221,    2, 0x08 /* Private */,
-      23,    1,  224,    2, 0x08 /* Private */,
-      24,    1,  227,    2, 0x08 /* Private */,
-      25,    1,  230,    2, 0x08 /* Private */,
-      26,    1,  233,    2, 0x08 /* Private */,
-      27,    1,  236,    2, 0x08 /* Private */,
-      29,    0,  239,    2, 0x08 /* Private */,
-      30,    0,  240,    2, 0x08 /* Private */,
-      31,    0,  241,    2, 0x08 /* Private */,
-      32,    0,  242,    2, 0x08 /* Private */,
-      33,    0,  243,    2, 0x08 /* Private */,
+       1,    1,  159,    2, 0x08 /* Private */,
+       4,    1,  162,    2, 0x08 /* Private */,
+       5,    1,  165,    2, 0x08 /* Private */,
+       6,    1,  168,    2, 0x08 /* Private */,
+       7,    1,  171,    2, 0x08 /* Private */,
+       8,    1,  174,    2, 0x08 /* Private */,
+       9,    1,  177,    2, 0x08 /* Private */,
+      10,    1,  180,    2, 0x08 /* Private */,
+      11,    1,  183,    2, 0x08 /* Private */,
+      12,    1,  186,    2, 0x08 /* Private */,
+      13,    1,  189,    2, 0x08 /* Private */,
+      14,    1,  192,    2, 0x08 /* Private */,
+      15,    1,  195,    2, 0x08 /* Private */,
+      16,    1,  198,    2, 0x08 /* Private */,
+      17,    1,  201,    2, 0x08 /* Private */,
+      18,    1,  204,    2, 0x08 /* Private */,
+      19,    1,  207,    2, 0x08 /* Private */,
+      20,    1,  210,    2, 0x08 /* Private */,
+      21,    1,  213,    2, 0x08 /* Private */,
+      22,    1,  216,    2, 0x08 /* Private */,
+      23,    1,  219,    2, 0x08 /* Private */,
+      24,    1,  222,    2, 0x08 /* Private */,
+      25,    1,  225,    2, 0x08 /* Private */,
+      26,    1,  228,    2, 0x08 /* Private */,
+      27,    0,  231,    2, 0x08 /* Private */,
+      28,    0,  232,    2, 0x08 /* Private */,
+      29,    0,  233,    2, 0x08 /* Private */,
+      30,    0,  234,    2, 0x08 /* Private */,
+      31,    0,  235,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -157,7 +153,6 @@ static const uint qt_meta_data_ProtoInterface[] = {
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    3,
-    QMetaType::Void, QMetaType::Int,   28,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -197,12 +192,11 @@ void ProtoInterface::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 21: _t->on_cmdE_22_stateChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 22: _t->on_cmdE_23_stateChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 23: _t->on_cmdE_24_stateChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 24: _t->on_horizontalSlider_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 25: _t->on_bSetAll_clicked(); break;
-        case 26: _t->on_bUnSetAll_clicked(); break;
-        case 27: _t->on_bArretTension_clicked(); break;
-        case 28: _t->startProgram(); break;
-        case 29: _t->on_bLancerSequence_clicked(); break;
+        case 24: _t->on_bDebut_clicked(); break;
+        case 25: _t->on_bFin_clicked(); break;
+        case 26: _t->on_bPause_clicked(); break;
+        case 27: _t->on_bReprise_clicked(); break;
+        case 28: _t->on_bUrgence_clicked(); break;
         default: ;
         }
     }
@@ -233,13 +227,13 @@ int ProtoInterface::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 30)
+        if (_id < 29)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 30;
+        _id -= 29;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 30)
+        if (_id < 29)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 30;
+        _id -= 29;
     }
     return _id;
 }
