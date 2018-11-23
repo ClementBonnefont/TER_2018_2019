@@ -19,10 +19,17 @@ void Carton::charger()
     QList<Couleur> ligne;
 
     for(int i = 0; i < nbLigne; i++) {
-        for(int j = 0; j < nbColonne; j++) {
-            ligne.append(Couleur(qRed(image.pixel(i,j)), qGreen(image.pixel(i,j)), qBlue(image.pixel(i,j))));
-            matrice.append(ligne);
-            ligne.clear();
+        for(int j = 0; j < 24; j++) {
+            if (j< nbColonne){
+                ligne.append(Couleur(qRed(image.pixel(i,j)), qGreen(image.pixel(i,j)), qBlue(image.pixel(i,j))));
+                matrice.append(ligne);
+                ligne.clear();
+            }else{
+                ligne.append(Couleur(0, 0, 0));
+                matrice.append(ligne);
+                ligne.clear();
+            }
+
         }
     }
 }
@@ -76,8 +83,25 @@ void Carton::saveCarton()
 }
 
 
-QList<Couleur> Carton::getLigne(int indexLigne) {return this->matrice[indexLigne];}
+QList<Couleur> Carton::getLigne(int indexLigne) {
+    return this->matrice[indexLigne];
+}
 
 bool Carton::finCarton(int indexLigne) {
     return (indexLigne == nbLigne-1);
+}
+
+
+QList<int> Carton::getLigneNoirBlanc(int indexLigne){
+    QList<Couleur> ligne = this->matrice[indexLigne];
+    QList<int> ligneNoirBlanc = QList<int>();
+    foreach(Couleur item, ligne )
+    {
+        if (item.isBlanc()){
+            ligneNoirBlanc.append(0);
+        }else if (item.isNoir()){
+            ligneNoirBlanc.append(1);
+        }
+    }
+    return ligneNoirBlanc;
 }

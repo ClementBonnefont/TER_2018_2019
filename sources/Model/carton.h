@@ -5,7 +5,6 @@
 #include <QList>
 #include <iostream>
 #include "couleur.h"
-#include <QBuffer>
 
 using namespace std;
 
@@ -28,6 +27,7 @@ public:
     void saveCarton();
     void saveCartonAs(string, string);
     bool finCarton(int);
+    QList<int> getLigneNoirBlanc(int);
 };
 
 #endif // CARTON_H
