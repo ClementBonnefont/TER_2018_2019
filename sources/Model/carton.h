@@ -33,6 +33,7 @@ public:
     QList<QList<int>> getMatriceNoirBlanc();
     void afficheMatriceNoirBlanc();
     Carton operator=(Carton);
+    QList<QList<Couleur>> getMatrice();
 
 };
 

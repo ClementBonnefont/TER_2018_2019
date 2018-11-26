@@ -154,3 +154,7 @@ QList<int> Carton::getLigneNoirBlanc(int indexLigne){
 
      cout <<endl;
  }
+
+ QList<QList<Couleur>> Carton::getMatrice(){
+     return this->matrice;
+ }
