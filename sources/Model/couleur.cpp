@@ -8,6 +8,7 @@ Couleur::Couleur(int r, int g, int b)
     this->b = b;
 }
 
+
 void Couleur::setBlancNoir(){
     if(this->isNoir()){
         this->r = 255;
@@ -20,7 +21,7 @@ void Couleur::setBlancNoir(){
     }
 }
 bool Couleur::isNoir(){
-    if(this->r == 255 && this->g == 255 && this->b == 255){
+    if(this->r != 0 && this->g != 0 && this->b != 0){
         return true;
     }
         return false;
@@ -57,11 +58,11 @@ void Couleur::editCouleur(int r, int g, int b){
     this->b = b;
 }
 void Couleur::affichageCouleur(){
-    cout << "RGB : (" <<this->r <<", "<<this->g<<", "<<this->b<<")"<<endl;
+    cout << "RGB : (" <<this->r <<", "<<this->g<<", "<<this->b<<")";
 }
 
 ostream& operator<<(ostream& out,Couleur& c){
-   out << "(" <<c.r <<", "<<c.g<<", "<<c.b<<")"<<endl;
+   out << "(" <<c.r <<", "<<c.g<<", "<<c.b<<")";
     return out;
 }
 

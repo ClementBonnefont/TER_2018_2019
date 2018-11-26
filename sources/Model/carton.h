@@ -5,6 +5,7 @@
 #include <QList>
 #include <iostream>
 #include "couleur.h"
+#include <QDebug>
 
 using namespace std;
 
@@ -15,11 +16,12 @@ private:
     string nom;
     string date;
     int nbLigne;
-    int nbColonne;
+    const int nbColonne = 24;
     QList<QList<Couleur>> matrice;
 
 public:
-    Carton(string chemin = "", string nom = "", string date = "", int nbL = 0, int nbC = 0);
+    Carton(string chemin = "", string nom = "", string date = "", int nbL = 0);
+    Carton(Carton&);
     QList<Couleur> getLigne(int);
     void charger();
     void editCarton(int, int, Couleur);
@@ -28,6 +30,10 @@ public:
     void saveCartonAs(string, string);
     bool finCarton(int);
     QList<int> getLigneNoirBlanc(int);
+    QList<QList<int>> getMatriceNoirBlanc();
+    void afficheMatriceNoirBlanc();
+    Carton operator=(Carton);
+
 };
 
 #endif // CARTON_H
