@@ -2,7 +2,7 @@
 
 Carton::Carton(string chemin, string nom, string date, int nbL, int nbC)
 {
-    this->chemin = chemin;
+    this->chemin = "C:/Users/ville/Documents/UPSSITECH/2A/TER/carton20x240.bmp";
     this->nom = nom;
     this->date = date;
     this->nbLigne = nbL;

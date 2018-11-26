@@ -1,7 +1,9 @@
 #include <QApplication>
 #include "../../ProtoInterfaceCmd/ProtoInterfaceCmd/protointerface.h"
 #include <iostream>
+#include <QDebug>
 #include "machineaetat.h"
+#include "threadmae.h"
 
 using namespace std;
 
@@ -11,10 +13,13 @@ int main(int argc, char *argv[])
     Carton carton;
     InterfaceDonnees::CARTON_EN_COURS = carton;
     ProtoInterface w;
-    MachineAEtat mae;
+    ThreadMae *thread;
+    thread = new ThreadMae;
 
-    w.show();
-    mae.activer();
-    w.setLabel(mae.getEtatPresent());
+    carton.charger();
+    //w.show();
+    //thread->start();
+    InterfaceDonnees::CARTON_EN_COURS.affichageCarton();
+
     return app.exec();
 }

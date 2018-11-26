@@ -4,6 +4,9 @@
 #include <QTimer>
 #include "interfacedonnees.h"
 
+//Simulation
+#include "../../ProtoInterfaceCmd/ProtoInterfaceCmd/programme.h"
+
 #define ATTENTE 0
 #define PILOTAGE_ELECTROAIMANT 1
 #define TEMPS_ECOULE 2
@@ -19,7 +22,10 @@ private :
     QTimer timer;
     bool tor;
     int memoEtat;
-    int* vectLigne;
+    QList<int> vectLigne;
+
+    //Simulation
+    Programme p;
 
 public:
     MachineAEtat();

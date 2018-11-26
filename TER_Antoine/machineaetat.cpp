@@ -5,7 +5,6 @@ MachineAEtat::MachineAEtat()
     etatPresent = 0;
     memoEtat = ATTENTE;
     tor = false; //Simulation
-    vectLigne = new int[24];
     //vectLigne = InterfaceDonnees::CARTON_EN_COURS.getLigne(InterfaceDonnees::LIGNES_EN_COURS);
 }
 
@@ -22,7 +21,13 @@ bool MachineAEtat::finTempo() {
 }
 
 void MachineAEtat::pilotageEA() {
-
+/*    this->lancerTimer(4);
+    for(int i = 0; i < 24; i++) {
+        if(vectLigne[i] == 0)
+            p.unSetCadre(i);
+        else
+            p.setCadre(i);
+    }*/
 }
 
 void MachineAEtat::activer() {
@@ -93,7 +98,7 @@ void MachineAEtat::activer() {
     }
     else if(etatPresent == PROCHAINE_LIGNE) {
         InterfaceDonnees::LIGNES_EN_COURS++;
-        //vectLigne = InterfaceDonnees::CARTON_EN_COURS.getLigne(InterfaceDonnees::LIGNES_EN_COURS);
+        vectLigne = InterfaceDonnees::CARTON_EN_COURS.getLigne(InterfaceDonnees::LIGNES_EN_COURS);
     }
     else if(etatPresent == FIN_TISSAGE) {
         InterfaceDonnees::FIN = true;
