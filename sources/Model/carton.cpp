@@ -24,9 +24,9 @@ Carton::Carton(Carton& copy){
 
 
 
-void Carton::charger()
+void Carton::charger(string chemin)
 {
-    const char * c = this->chemin.c_str();
+    const char * c = chemin.c_str();
     QImage image(c);
     this->nbLigne = image.width();
     QList<Couleur> ligne;
@@ -89,7 +89,8 @@ void Carton::saveCartonAs(string chemin, string nom)
 {
     Carton copi(*this);
     copi.chemin = chemin;
-    copi.nom = nom;
+    if (nom != "")
+        copi.nom = nom;
     *this = copi;
     this->saveCarton();
 }
@@ -107,6 +108,7 @@ void Carton::saveCarton()
         }
     }
 
+    image.setText("filname",QString::fromStdString(this->chemin));
     image.save(QString::fromStdString(this->nom + ".bmp"));
 
 }
@@ -157,4 +159,9 @@ QList<int> Carton::getLigneNoirBlanc(int indexLigne){
 
  QList<QList<Couleur>> Carton::getMatrice(){
      return this->matrice;
+ }
+
+ string Carton::getChemin()
+ {
+     return this->chemin;
  }
