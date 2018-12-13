@@ -15,7 +15,7 @@
 #define FIN_TISSAGE 4
 #define ETAT_URGENCE 5
 
-class MachineAEtat : public QObject
+class MachineAEtat
 {
 private :
     int etatPresent;

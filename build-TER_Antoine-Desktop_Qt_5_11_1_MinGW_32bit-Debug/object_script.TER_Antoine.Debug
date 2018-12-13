@@ -1,0 +1,14 @@
+INPUT(
+./debug\main.o
+./debug\machineaetat.o
+./debug\interfacedonnees.o
+./debug\programme.o
+./debug\protointerface.o
+./debug\threadmae.o
+./debug\interfacesimu.o
+./debug\carton.o
+./debug\couleur.o
+./debug\memoire.o
+./debug\ControllerCarton.o
+./debug\moc_protointerface.o
+);

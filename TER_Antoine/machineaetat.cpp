@@ -4,7 +4,7 @@ MachineAEtat::MachineAEtat()
 {
     etatPresent = 0;
     memoEtat = ATTENTE;
-    vectLigne = InterfaceDonnees::CARTON_EN_COURS.getLigne(InterfaceDonnees::LIGNES_EN_COURS);
+    vectLigne = InterfaceDonnees::CARTON_EN_COURS->getLigneNoirBlanc(InterfaceDonnees::LIGNES_EN_COURS);
 }
 
 //Faire un if sur toute la fonction "activer()" avec i++ à la fin
@@ -23,8 +23,8 @@ bool MachineAEtat::finTempo() {
 void MachineAEtat::pilotageEA() {
     //this->lancerTimer(4);
     for(int i = 0; i < 24; i++) {
-        if(vectLigne.value(i) == 0)
-            InterfaceSimu::valEA[i] = true;
+        if(vectLigne[i] == 0)
+            InterfaceSimu::valEA[i] = false;
         else
             InterfaceSimu::valEA[i] = true;
     }
@@ -69,7 +69,7 @@ void MachineAEtat::activer() {
             memoEtat = etatPresent;
             etatSuivant = ETAT_URGENCE;
         }
-        else if(InterfaceDonnees::CARTON_EN_COURS.finCarton(InterfaceDonnees::LIGNES_EN_COURS))
+        else if(InterfaceDonnees::CARTON_EN_COURS->finCarton(InterfaceDonnees::LIGNES_EN_COURS))
             etatSuivant = FIN_TISSAGE;
         else
             etatSuivant = PILOTAGE_ELECTROAIMANT;
@@ -98,7 +98,7 @@ void MachineAEtat::activer() {
     }
     else if(etatPresent == PROCHAINE_LIGNE) {
         InterfaceDonnees::LIGNES_EN_COURS++;
-        vectLigne = InterfaceDonnees::CARTON_EN_COURS.getLigne(InterfaceDonnees::LIGNES_EN_COURS);
+        vectLigne = InterfaceDonnees::CARTON_EN_COURS->getLigneNoirBlanc(InterfaceDonnees::LIGNES_EN_COURS);
     }
     else if(etatPresent == FIN_TISSAGE) {
         InterfaceDonnees::FIN = true;

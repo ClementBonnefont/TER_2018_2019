@@ -1,0 +1,14 @@
+INPUT(
+./release\main.o
+./release\machineaetat.o
+./release\interfacedonnees.o
+./release\programme.o
+./release\protointerface.o
+./release\threadmae.o
+./release\interfacesimu.o
+./release\carton.o
+./release\couleur.o
+./release\memoire.o
+./release\ControllerCarton.o
+./release\moc_protointerface.o
+);
