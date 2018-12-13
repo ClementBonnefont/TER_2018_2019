@@ -18,16 +18,16 @@ void Carton::charger()
 {
     const char * c = this->chemin.c_str();
     QImage image(c);
-    this->nbLigne = image.width();
-    this->nbColonne = image.height();
+    this->nbLigne = image.height();
+    this->nbColonne = image.width();
     QList<int> col;
 
-    for(int i = 0; i < nbLigne; i++) {
-        for(int j = 0; j < nbColonne; j++) {
-            col.append(255 - image.pixelIndex(i,j));
-            matrice.append(col);
-            col.clear();
+    for(int i = 0; i < this->nbLigne; i++) {
+        for(int j = 0; j < this->nbColonne; j++) {
+            col.append(1);
         }
+        this->matrice.append(col);
+        col.clear();
     }
 }
 
@@ -49,9 +49,9 @@ void Carton::affichageCarton()
     cout << "Nombre de colonne : "<<this->nbColonne << endl;
     cout << "Donnée : " << endl;
     cout << "[" << endl;
-    for (int i(0); i< this->matrice.size() ; i++ ){
-        for (int j(0); j< this->matrice[i].size() ; j++ ){
-            cout << this->matrice[i][j] << endl;
+    for (int i = 0; i< this->matrice.size() ; i++ ){
+        for (int j = 0; j< this->matrice.value(i).size() ; j++ ){
+            cout << this->matrice.value(i).value(j) << endl;
         }
         cout << endl;
     }
@@ -65,7 +65,9 @@ void Carton::saveCarton(string chemin)
 }
 
 
-QList<int> Carton::getLigne(int indexLigne) {return this->matrice[indexLigne];}
+QList<int> Carton::getLigne(int indexLigne) {
+    return this->matrice.value(indexLigne);
+}
 
 bool Carton::finCarton(int indexLigne) {
     return (indexLigne == nbLigne-1);

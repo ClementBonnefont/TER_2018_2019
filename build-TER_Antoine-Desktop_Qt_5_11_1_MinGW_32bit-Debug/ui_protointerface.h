@@ -43,7 +43,6 @@ public:
     QCheckBox *cmdE_3;
     QCheckBox *cmdE_2;
     QCheckBox *cmdE_24;
-    QCheckBox *cmdE_1;
     QCheckBox *cmdE_22;
     QCheckBox *cmdE_21;
     QCheckBox *cmdE_20;
@@ -54,6 +53,7 @@ public:
     QCheckBox *cmdE_15;
     QCheckBox *cmdE_14;
     QCheckBox *cmdE_13;
+    QCheckBox *cmdE_1;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *grilleTitre;
     QSpacerItem *horizontalSpacer;
@@ -61,11 +61,12 @@ public:
     QSpacerItem *horizontalSpacer_2;
     QWidget *gridLayoutWidget_5;
     QGridLayout *grilleActions_2;
-    QPushButton *bUrgence;
-    QPushButton *bPause;
-    QPushButton *bReprise;
     QPushButton *bFin;
+    QPushButton *bPause;
+    QPushButton *bUrgence;
     QPushButton *bDebut;
+    QPushButton *bReprise;
+    QPushButton *bTOR;
     QLabel *lVisuEtatMAE;
 
     void setupUi(QMainWindow *ProtoInterface)
@@ -166,12 +167,6 @@ public:
 
         grilleCmdeAimants1->addWidget(cmdE_24, 11, 1, 1, 1);
 
-        cmdE_1 = new QCheckBox(gridLayoutWidget);
-        cmdE_1->setObjectName(QStringLiteral("cmdE_1"));
-        cmdE_1->setCheckable(true);
-
-        grilleCmdeAimants1->addWidget(cmdE_1, 0, 0, 1, 1);
-
         cmdE_22 = new QCheckBox(gridLayoutWidget);
         cmdE_22->setObjectName(QStringLiteral("cmdE_22"));
         cmdE_22->setCheckable(true);
@@ -232,6 +227,12 @@ public:
 
         grilleCmdeAimants1->addWidget(cmdE_13, 0, 1, 1, 1);
 
+        cmdE_1 = new QCheckBox(gridLayoutWidget);
+        cmdE_1->setObjectName(QStringLiteral("cmdE_1"));
+        cmdE_1->setCheckable(true);
+
+        grilleCmdeAimants1->addWidget(cmdE_1, 0, 0, 1, 1);
+
         horizontalLayoutWidget = new QWidget(fenetreConteneur);
         horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
         horizontalLayoutWidget->setGeometry(QRect(30, 10, 721, 41));
@@ -266,30 +267,35 @@ public:
         grilleActions_2->setContentsMargins(11, 11, 11, 11);
         grilleActions_2->setObjectName(QStringLiteral("grilleActions_2"));
         grilleActions_2->setContentsMargins(0, 0, 0, 0);
-        bUrgence = new QPushButton(gridLayoutWidget_5);
-        bUrgence->setObjectName(QStringLiteral("bUrgence"));
+        bFin = new QPushButton(gridLayoutWidget_5);
+        bFin->setObjectName(QStringLiteral("bFin"));
 
-        grilleActions_2->addWidget(bUrgence, 2, 1, 1, 1);
+        grilleActions_2->addWidget(bFin, 0, 1, 1, 1);
 
         bPause = new QPushButton(gridLayoutWidget_5);
         bPause->setObjectName(QStringLiteral("bPause"));
 
         grilleActions_2->addWidget(bPause, 1, 0, 1, 1);
 
-        bReprise = new QPushButton(gridLayoutWidget_5);
-        bReprise->setObjectName(QStringLiteral("bReprise"));
+        bUrgence = new QPushButton(gridLayoutWidget_5);
+        bUrgence->setObjectName(QStringLiteral("bUrgence"));
 
-        grilleActions_2->addWidget(bReprise, 1, 1, 1, 1);
-
-        bFin = new QPushButton(gridLayoutWidget_5);
-        bFin->setObjectName(QStringLiteral("bFin"));
-
-        grilleActions_2->addWidget(bFin, 0, 1, 1, 1);
+        grilleActions_2->addWidget(bUrgence, 2, 1, 1, 1);
 
         bDebut = new QPushButton(gridLayoutWidget_5);
         bDebut->setObjectName(QStringLiteral("bDebut"));
 
         grilleActions_2->addWidget(bDebut, 0, 0, 1, 1);
+
+        bReprise = new QPushButton(gridLayoutWidget_5);
+        bReprise->setObjectName(QStringLiteral("bReprise"));
+
+        grilleActions_2->addWidget(bReprise, 1, 1, 1, 1);
+
+        bTOR = new QPushButton(gridLayoutWidget_5);
+        bTOR->setObjectName(QStringLiteral("bTOR"));
+
+        grilleActions_2->addWidget(bTOR, 2, 0, 1, 1);
 
         lVisuEtatMAE = new QLabel(fenetreConteneur);
         lVisuEtatMAE->setObjectName(QStringLiteral("lVisuEtatMAE"));
@@ -340,7 +346,6 @@ public:
         cmdE_3->setText(QApplication::translate("ProtoInterface", "Cadre 3", nullptr));
         cmdE_2->setText(QApplication::translate("ProtoInterface", "Cadre 2", nullptr));
         cmdE_24->setText(QApplication::translate("ProtoInterface", "Cadre 24", nullptr));
-        cmdE_1->setText(QApplication::translate("ProtoInterface", "Cadre 1", nullptr));
         cmdE_22->setText(QApplication::translate("ProtoInterface", "Cadre 22", nullptr));
         cmdE_21->setText(QApplication::translate("ProtoInterface", "Cadre 21", nullptr));
         cmdE_20->setText(QApplication::translate("ProtoInterface", "Cadre 20", nullptr));
@@ -351,12 +356,14 @@ public:
         cmdE_15->setText(QApplication::translate("ProtoInterface", "Cadre 15", nullptr));
         cmdE_14->setText(QApplication::translate("ProtoInterface", "Cadre 14", nullptr));
         cmdE_13->setText(QApplication::translate("ProtoInterface", "Cadre 13", nullptr));
+        cmdE_1->setText(QApplication::translate("ProtoInterface", "Cadre 1", nullptr));
         lTitre->setText(QApplication::translate("ProtoInterface", "Programme de test du comportement du m\303\251tier \303\240 tisser", nullptr));
-        bUrgence->setText(QApplication::translate("ProtoInterface", "Arret Urgence", nullptr));
-        bPause->setText(QApplication::translate("ProtoInterface", "Pause Tissage", nullptr));
-        bReprise->setText(QApplication::translate("ProtoInterface", "Reprise Tissage", nullptr));
         bFin->setText(QApplication::translate("ProtoInterface", "Fin Tissage", nullptr));
+        bPause->setText(QApplication::translate("ProtoInterface", "Pause Tissage", nullptr));
+        bUrgence->setText(QApplication::translate("ProtoInterface", "Arret Urgence", nullptr));
         bDebut->setText(QApplication::translate("ProtoInterface", "D\303\251but Tissage", nullptr));
+        bReprise->setText(QApplication::translate("ProtoInterface", "Reprise Tissage", nullptr));
+        bTOR->setText(QApplication::translate("ProtoInterface", "TOR", nullptr));
         lVisuEtatMAE->setText(QApplication::translate("ProtoInterface", "Visualisation Etat MAE", nullptr));
     } // retranslateUi
 

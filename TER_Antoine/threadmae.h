@@ -8,10 +8,11 @@ class ThreadMae : public QThread
 {
 
     private :
-        MachineAEtat mae;
+        MachineAEtat *mae;
+        ProtoInterface* proto;
 
     public:
-        ThreadMae(QObject * parent = NULL);
+        ThreadMae(ProtoInterface* proto, MachineAEtat * mae = nullptr);
         void run();
 };
 

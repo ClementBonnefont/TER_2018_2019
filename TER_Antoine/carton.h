@@ -4,6 +4,7 @@
 #include <QImage>
 #include <QList>
 #include <iostream>
+#include <QDebug>
 
 using namespace std;
 
@@ -18,7 +19,7 @@ private:
     QList<QList<int>> matrice;
 
 public:
-    Carton(string chemin = "", string nom = "", string date = "", int nbL = 0, int nbC = 0);
+    Carton(string chemin = "", string nom = "", string date = "", int nbL = 240, int nbC = 20);
     virtual ~Carton();
     QList<int> getLigne(int);
     void charger();

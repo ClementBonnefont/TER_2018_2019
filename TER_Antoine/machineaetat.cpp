@@ -4,10 +4,10 @@ MachineAEtat::MachineAEtat()
 {
     etatPresent = 0;
     memoEtat = ATTENTE;
-    tor = false; //Simulation
-    //vectLigne = InterfaceDonnees::CARTON_EN_COURS.getLigne(InterfaceDonnees::LIGNES_EN_COURS);
+    vectLigne = InterfaceDonnees::CARTON_EN_COURS.getLigne(InterfaceDonnees::LIGNES_EN_COURS);
 }
 
+//Faire un if sur toute la fonction "activer()" avec i++ à la fin
 void MachineAEtat::lancerTimer(int time) {
     this->timer.start(time);
 }
@@ -21,13 +21,13 @@ bool MachineAEtat::finTempo() {
 }
 
 void MachineAEtat::pilotageEA() {
-/*    this->lancerTimer(4);
+    //this->lancerTimer(4);
     for(int i = 0; i < 24; i++) {
-        if(vectLigne[i] == 0)
-            p.unSetCadre(i);
+        if(vectLigne.value(i) == 0)
+            InterfaceSimu::valEA[i] = true;
         else
-            p.setCadre(i);
-    }*/
+            InterfaceSimu::valEA[i] = true;
+    }
 }
 
 void MachineAEtat::activer() {
@@ -47,7 +47,7 @@ void MachineAEtat::activer() {
             memoEtat = etatPresent;
             etatSuivant = ETAT_URGENCE;
         }
-        else if(tor && (finTempo() == false))
+        else if(InterfaceSimu::valTOR/*&& (finTempo() == false)*/)
             etatSuivant = PROCHAINE_LIGNE;
         else if(InterfaceDonnees::PAUSE || finTempo())
             etatSuivant = TEMPS_ECOULE;
@@ -56,7 +56,7 @@ void MachineAEtat::activer() {
     }
     else if(etatPresent == TEMPS_ECOULE) {
         if(InterfaceDonnees::URGENCE) {
-            memoEtat = etatPresent;
+            memoEtat = PILOTAGE_ELECTROAIMANT;
             etatSuivant = ETAT_URGENCE;
         }
         else if(InterfaceDonnees::REPRISE)
@@ -69,7 +69,7 @@ void MachineAEtat::activer() {
             memoEtat = etatPresent;
             etatSuivant = ETAT_URGENCE;
         }
-        else if(1)//InterfaceDonnees::CARTON_EN_COURS.finCarton(InterfaceDonnees::LIGNES_EN_COURS))
+        else if(InterfaceDonnees::CARTON_EN_COURS.finCarton(InterfaceDonnees::LIGNES_EN_COURS))
             etatSuivant = FIN_TISSAGE;
         else
             etatSuivant = PILOTAGE_ELECTROAIMANT;

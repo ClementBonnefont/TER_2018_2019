@@ -5,9 +5,10 @@ SOURCES += \
     interfacedonnees.cpp \
     ../../ProtoInterfaceCmd/ProtoInterfaceCmd/programme.cpp \
     ../../ProtoInterfaceCmd/ProtoInterfaceCmd/protointerface.cpp \
-    threadmae.cpp
+    threadmae.cpp \
+    interfacesimu.cpp
 
-QT+=widgets
+QT += widgets
 
 HEADERS += \
     machineaetat.h \
@@ -15,8 +16,8 @@ HEADERS += \
     interfacedonnees.h \
     ../../ProtoInterfaceCmd/ProtoInterfaceCmd/programme.h \
     ../../ProtoInterfaceCmd/ProtoInterfaceCmd/protointerface.h \
-    ../../ProtoInterfaceCmd/ProtoInterfaceCmd/teste.h \
-    threadmae.h
+    threadmae.h \
+    interfacesimu.h
 
 SUBDIRS += \
     ../../ProtoInterfaceCmd/ProtoInterfaceCmd/ProtoInterfaceCmd.pro
