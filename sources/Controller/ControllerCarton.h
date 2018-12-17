@@ -19,7 +19,6 @@ public:
     void charger(string chemin);
     void editCarton(int ligne, int colonne, Couleur couleur);
     void saveCarton();
-    void saveCartonAs(string chemin, string nom);
     bool finCarton(int ligne);
     QList<int> getLigneNoirBlanc(int ligne);
     QList<QList<int>> getMatriceNoirBlanc();

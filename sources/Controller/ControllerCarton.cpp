@@ -2,8 +2,7 @@
 
 ControllerCarton::ControllerCarton(string chemin, string nom, string date, int nbL): carton(chemin, nom, date, nbL){
 }
-ControllerCarton::ControllerCarton(ControllerCarton& c){
-    this->carton = c.carton;
+ControllerCarton::ControllerCarton(ControllerCarton& c): carton(c.carton){
 }
 QList<Couleur> ControllerCarton::getLigne(int ligne){
     return this->carton.getLigne(ligne);
@@ -18,9 +17,6 @@ void ControllerCarton::editCarton(int ligne, int colonne, Couleur couleur){
 void ControllerCarton::saveCarton(){
     //si le carton n'a pas de chemin, il doit faire un appel a save carton as
     this->carton.saveCarton();
-}
-void ControllerCarton::saveCartonAs(string chemin, string nom){
-    this->carton.saveCartonAs(chemin, nom);
 }
 bool ControllerCarton::finCarton(int ligne){
     return this->carton.finCarton(ligne);

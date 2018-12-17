@@ -30,11 +30,8 @@ bool Memoire::CHARGE_MEMOIRE(){
     QTextStream in(&file);
     InterfaceDonnees::MEMO_ETAT_PRESENT = in.readLine().toInt();
     InterfaceDonnees::LIGNES_EN_COURS = in.readLine().toInt();
-    int nbLigne =  in.readLine().toInt();
-    QString chemin =  in.readLine();
-    Carton carton;
-    carton.charger(chemin.toStdString());
-    InterfaceDonnees::CARTON_EN_COURS = carton;
+    string chemin =  in.readLine().toStdString();
+    InterfaceDonnees::CARTON_EN_COURS.charger(chemin);
     file.remove();
     return true;
 
