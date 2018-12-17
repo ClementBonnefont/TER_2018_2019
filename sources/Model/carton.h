@@ -35,7 +35,7 @@ public:
     Carton operator=(Carton);
     QList<QList<Couleur>> getMatrice();
     string getChemin();
-
+    friend QTextStream& operator <<(QTextStream& out, Carton &c);
 };
 
 #endif // CARTON_H

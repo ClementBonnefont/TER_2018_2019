@@ -34,3 +34,7 @@ QList<QList<int>> ControllerCarton::getMatriceNoirBlanc(){
 QList<QList<Couleur>> ControllerCarton::getMatrice(){
     return this->carton.getMatrice();
 }
+
+Carton ControllerCarton::getCarton(){
+    return this->carton;
+}

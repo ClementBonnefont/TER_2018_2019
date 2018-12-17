@@ -20,13 +20,13 @@ void Couleur::setBlancNoir(){
         this->b = 0;
     }
 }
-bool Couleur::isNoir(){
+bool Couleur::isBlanc(){
     if(this->r != 0 && this->g != 0 && this->b != 0){
         return true;
     }
         return false;
 }
-bool Couleur::isBlanc(){
+bool Couleur::isNoir(){
     if(this->r == 0 && this->g == 0 && this->b == 0){
         return true;
     }
@@ -64,5 +64,10 @@ void Couleur::affichageCouleur(){
 ostream& operator<<(ostream& out,Couleur& c){
    out << "(" <<c.r <<", "<<c.g<<", "<<c.b<<")";
     return out;
+}
+
+QTextStream& operator <<(QTextStream& out, Couleur& c){
+    out << "(" <<c.r <<", "<<c.g<<", "<<c.b<<")";
+     return out;
 }
 

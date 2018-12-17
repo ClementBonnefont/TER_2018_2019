@@ -26,18 +26,19 @@ Carton::Carton(Carton& copy){
 
 void Carton::charger(string chemin)
 {
+    this->chemin = chemin;
     const char * c = chemin.c_str();
     QImage image(c);
-    this->nbLigne = image.width();
+    this->nbLigne = image.height();
     QList<Couleur> ligne;
 
     for(int i = 0; i < nbLigne; i++) {
         for(int j = 0; j < 24; j++) {
-            if (j< image.height()){
-                ligne.append(Couleur(qRed(image.pixel(i,j)), qGreen(image.pixel(i,j)), qBlue(image.pixel(i,j))));
+            if (j< image.width()){
+                ligne.append(Couleur(qRed(image.pixel(j,i)), qGreen(image.pixel(j,i)), qBlue(image.pixel(j,i))));
 
             }else{
-                ligne.append(Couleur(0, 0, 0));
+                ligne.append(Couleur(255, 255, 255));
             }
 
         }
@@ -164,4 +165,14 @@ QList<int> Carton::getLigneNoirBlanc(int indexLigne){
  string Carton::getChemin()
  {
      return this->chemin;
+ }
+ QTextStream& operator <<(QTextStream& out, Carton &c){
+    out <<c.nbLigne <<endl;
+    for (int i(0); i< c.matrice.size() ; i++ ){
+        for (int j(0); j< c.matrice[i].size() ; j++ ){
+            out << "-"<<c.matrice[i][j];
+        }
+        out<< endl;
+    }
+    return out;
  }
