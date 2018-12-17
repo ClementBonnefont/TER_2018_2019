@@ -1,10 +1,6 @@
 #include <QApplication>
 #include "../../ProtoInterfaceCmd/ProtoInterfaceCmd/protointerface.h"
-#include <iostream>
-#include <QDebug>
 #include "threadmae.h"
-
-using namespace std;
 
 int main(int argc, char *argv[])
 {
