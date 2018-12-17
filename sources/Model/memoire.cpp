@@ -28,7 +28,7 @@ bool Memoire::CHARGE_MEMOIRE(){
         return false;
 
     QTextStream in(&file);
-    InterfaceDonnees::MEMO_ETAT_PRESENT = in.readLine().toInt();
+    InterfaceDonnees::MEMO_ETAT_PRESENT = 2;
     InterfaceDonnees::LIGNES_EN_COURS = in.readLine().toInt();
     string chemin =  in.readLine().toStdString();
     InterfaceDonnees::CARTON_EN_COURS.charger(chemin);
@@ -45,7 +45,6 @@ bool Memoire::SAVE_MEMOIRE(){
 
     QTextStream t(&file);
 
-    t << InterfaceDonnees::MEMO_ETAT_PRESENT << endl;
     t << InterfaceDonnees::LIGNES_EN_COURS << endl;
     t << InterfaceDonnees::CARTON_EN_COURS << endl;
     file.close();

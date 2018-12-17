@@ -114,6 +114,8 @@ QList<int> Carton::getLigneNoirBlanc(int indexLigne){
             ligneNoirBlanc.append(0);
         }else if (item.isNoir()){
             ligneNoirBlanc.append(1);
+        }else{
+            ligneNoirBlanc.append(0);
         }
     }
     return ligneNoirBlanc;
