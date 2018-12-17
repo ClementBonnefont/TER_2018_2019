@@ -18,4 +18,5 @@ int main (int argc, char* argv[]) {
     InterfaceDonnees::LIGNES_EN_COURS = 4;
     InterfaceDonnees::MEMO_ETAT_PRESENT = 2;
     Memoire::SAVE_MEMOIRE();
+    Memoire::CHARGE_MEMOIRE();
 }

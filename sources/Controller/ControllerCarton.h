@@ -25,6 +25,9 @@ public:
     QList<QList<int>> getMatriceNoirBlanc();
     QList<QList<Couleur>> getMatrice();
     Carton getCarton();
+    int getNbColonneConnue();
+    int getNbLigne();
+
 };
 
 #endif // CONTROLLERCARTON_H

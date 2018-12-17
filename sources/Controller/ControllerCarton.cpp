@@ -38,3 +38,10 @@ QList<QList<Couleur>> ControllerCarton::getMatrice(){
 Carton ControllerCarton::getCarton(){
     return this->carton;
 }
+
+int ControllerCarton::getNbColonneConnue(){
+    return this->carton.getNbColonneConnue();
+}
+int ControllerCarton::getNbLigne(){
+   return this->carton.getNbLigne();
+}

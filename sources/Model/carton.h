@@ -17,10 +17,11 @@ private:
     string date;
     int nbLigne;
     const int nbColonne = 24;
+    int nbColonneConnue;
     QList<QList<Couleur>> matrice;
 
 public:
-    Carton(string chemin = "", string nom = "", string date = "", int nbL = 0);
+    Carton(string chemin = "", string nom = "", string date = "", int nbL = 0, int nbColonneConnue = 0);
     Carton(Carton&);
     QList<Couleur> getLigne(int ligne);
     void charger(string chemin);
@@ -36,6 +37,8 @@ public:
     QList<QList<Couleur>> getMatrice();
     string getChemin();
     friend QTextStream& operator <<(QTextStream& out, Carton &c);
+    int getNbColonneConnue();
+    int getNbLigne();
 };
 
 #endif // CARTON_H

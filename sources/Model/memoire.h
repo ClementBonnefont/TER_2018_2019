@@ -2,13 +2,10 @@
 #define MEMOIRE_H
 #include <iostream>
 #include "carton.h"
-#include <QThread>
-#include <QDir>
+#include "interfacedonnees.h"
 using namespace std;
 
 
-
-//ce model enregistre la ligne en cours, le carton en cours
 class Memoire
 {
 

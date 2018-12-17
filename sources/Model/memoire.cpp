@@ -1,5 +1,5 @@
 #include "memoire.h"
-#include "interfacedonnees.h"
+
 
 /*
  * string repertoireDeSauvegarde;
@@ -26,15 +26,15 @@ bool Memoire::CHARGE_MEMOIRE(){
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         // Impossible de créer ou ouvrir le fichier!
         return false;
+
     QTextStream in(&file);
     InterfaceDonnees::MEMO_ETAT_PRESENT = in.readLine().toInt();
     InterfaceDonnees::LIGNES_EN_COURS = in.readLine().toInt();
     int nbLigne =  in.readLine().toInt();
-    while (!in.atEnd()) {
-        QString line = in.readLine();
-        //charger le carton ect
-
-    }
+    QString chemin =  in.readLine();
+    Carton carton;
+    carton.charger(chemin.toStdString());
+    InterfaceDonnees::CARTON_EN_COURS = carton;
     file.remove();
     return true;
 

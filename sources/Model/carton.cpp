@@ -1,17 +1,19 @@
 #include "carton.h"
 
-Carton::Carton(string chemin, string nom, string date, int nbL)
+Carton::Carton(string chemin, string nom, string date, int nbL, int nbColonneConnue)
 {
     this->chemin = chemin;
     this->nom = nom;
     this->date = date;
     this->nbLigne = nbL;
+    this->nbColonneConnue = nbColonneConnue;
 }
 Carton::Carton(Carton& copy){
     this->chemin = copy.chemin;
     this->nom = copy.nom;
     this->date = copy.date;
     this->nbLigne = copy.nbLigne;
+    this->nbColonneConnue = copy.nbColonneConnue;
     QList<Couleur> ligne;
     for(int i = 0; i < nbLigne; i++) {
         for(int j = 0; j < 24; j++) {
@@ -30,11 +32,12 @@ void Carton::charger(string chemin)
     const char * c = chemin.c_str();
     QImage image(c);
     this->nbLigne = image.height();
+    this->nbColonneConnue = image.width();
     QList<Couleur> ligne;
 
     for(int i = 0; i < nbLigne; i++) {
         for(int j = 0; j < 24; j++) {
-            if (j< image.width()){
+            if (j< nbColonneConnue){
                 ligne.append(Couleur(qRed(image.pixel(j,i)), qGreen(image.pixel(j,i)), qBlue(image.pixel(j,i))));
 
             }else{
@@ -168,11 +171,13 @@ QList<int> Carton::getLigneNoirBlanc(int indexLigne){
  }
  QTextStream& operator <<(QTextStream& out, Carton &c){
     out <<c.nbLigne <<endl;
-    for (int i(0); i< c.matrice.size() ; i++ ){
-        for (int j(0); j< c.matrice[i].size() ; j++ ){
-            out << "-"<<c.matrice[i][j];
-        }
-        out<< endl;
-    }
+    out << QString::fromStdString(c.chemin) <<endl;
     return out;
+ }
+
+ int Carton::getNbColonneConnue(){
+     return this->nbColonneConnue;
+ }
+ int Carton::getNbLigne(){
+    return this->nbLigne;
  }
