@@ -26,13 +26,13 @@ void Carton::charger(string chemin)
 {
     const char * c = chemin.c_str();
     QImage image(c);
-    this->nbLigne = image.width();
+    this->nbLigne = image.height();
     QList<Couleur> ligne;
 
     for(int i = 0; i < nbLigne; i++) {
         for(int j = 0; j < 24; j++) {
-            if (j< image.height()){
-                ligne.append(Couleur(qRed(image.pixel(i,j)), qGreen(image.pixel(i,j)), qBlue(image.pixel(i,j))));
+            if (j< image.width()){
+                ligne.append(Couleur(qRed(image.pixel(j,i)), qGreen(image.pixel(j,i)), qBlue(image.pixel(j,i))));
 
             }else{
                 ligne.append(Couleur(0, 0, 0));
@@ -162,4 +162,8 @@ QList<int> Carton::getLigneNoirBlanc(int indexLigne){
  string Carton::getChemin()
  {
      return this->chemin;
+ }
+
+ int Carton::getNbLigne() {
+     return this->nbLigne;
  }

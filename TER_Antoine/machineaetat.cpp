@@ -2,26 +2,17 @@
 
 MachineAEtat::MachineAEtat()
 {
-    etatPresent = 0;
+    etatPresent = ATTENTE;
     memoEtat = ATTENTE;
     vectLigne = InterfaceDonnees::CARTON_EN_COURS->getLigneNoirBlanc(InterfaceDonnees::LIGNES_EN_COURS);
 }
 
-//Faire un if sur toute la fonction "activer()" avec i++ à la fin
-void MachineAEtat::lancerTimer(int time) {
-    this->timer.start(time);
-}
-
-int MachineAEtat::getTimeTimer() {
-    return this->timer.remainingTime();
-}
-
 bool MachineAEtat::finTempo() {
-    return (this->getTimeTimer() == 0);
+    QTime timeTemp = QTime::currentTime();
+    return (time.secsTo(timeTemp) > 3);
 }
 
 void MachineAEtat::pilotageEA() {
-    //this->lancerTimer(4);
     for(int i = 0; i < 24; i++) {
         if(vectLigne[i] == 0)
             InterfaceSimu::valEA[i] = false;
@@ -30,61 +21,103 @@ void MachineAEtat::pilotageEA() {
     }
 }
 
+void MachineAEtat::resetEA() {
+    for(int i = 0; i < 24; i++)
+        InterfaceSimu::valEA[i] = false;
+}
+
+void MachineAEtat::calculProchaineLigne() {
+    if(InterfaceDonnees::SENS_NORMAL) {
+        InterfaceDonnees::LIGNES_EN_COURS++;
+        if(InterfaceDonnees::LIGNES_EN_COURS >= InterfaceDonnees::CARTON_EN_COURS->getNbLigne())
+            InterfaceDonnees::LIGNES_EN_COURS = 0;
+    }
+    else {
+        InterfaceDonnees::LIGNES_EN_COURS--;
+        if(InterfaceDonnees::LIGNES_EN_COURS < 0)
+                InterfaceDonnees::LIGNES_EN_COURS = InterfaceDonnees::CARTON_EN_COURS->getNbLigne() - 1;
+    }
+}
+
 void MachineAEtat::activer() {
     //BLOC F
     if(etatPresent == ATTENTE) {
         if(InterfaceDonnees::URGENCE) {
+            InterfaceDonnees::URGENCE = false;
             memoEtat = etatPresent;
             etatSuivant = ETAT_URGENCE;
         }
-        else if(InterfaceDonnees::DEBUT)
+        else if(InterfaceDonnees::DEBUT) {
+            InterfaceDonnees::DEBUT = false;
+            time = QTime::currentTime();
             etatSuivant = PILOTAGE_ELECTROAIMANT;
+        }
         else
             etatSuivant = etatPresent;
     }
     else if(etatPresent == PILOTAGE_ELECTROAIMANT) {
         if(InterfaceDonnees::URGENCE) {
-            memoEtat = etatPresent;
+            InterfaceDonnees::URGENCE = false;
+            memoEtat = ETAT_PAUSE;
             etatSuivant = ETAT_URGENCE;
         }
-        else if(InterfaceSimu::valTOR/*&& (finTempo() == false)*/)
-            etatSuivant = PROCHAINE_LIGNE;
+        else if(InterfaceDonnees::FIN) {
+            InterfaceDonnees::FIN = false;
+            etatSuivant = ATTENTE;
+        }
         else if(InterfaceDonnees::PAUSE || finTempo())
-            etatSuivant = TEMPS_ECOULE;
+            etatSuivant = ETAT_PAUSE;
+        else if(InterfaceSimu::valTOR && !finTempo())
+            etatSuivant = PROCHAINE_LIGNE;
         else
             etatSuivant = etatPresent;
     }
-    else if(etatPresent == TEMPS_ECOULE) {
+    else if(etatPresent == ETAT_PAUSE) {
         if(InterfaceDonnees::URGENCE) {
-            memoEtat = PILOTAGE_ELECTROAIMANT;
+            InterfaceDonnees::URGENCE = false;
+            memoEtat = etatPresent;
             etatSuivant = ETAT_URGENCE;
         }
-        else if(InterfaceDonnees::REPRISE)
+        else if(InterfaceDonnees::FIN) {
+            InterfaceDonnees::FIN = false;
+            etatSuivant = ATTENTE;
+        }
+        else if(InterfaceDonnees::REPRISE) {
+            InterfaceDonnees::REPRISE = false;
+            time = QTime::currentTime();
             etatSuivant = PILOTAGE_ELECTROAIMANT;
+        }
         else
             etatSuivant = etatPresent;
     }
     else if(etatPresent == PROCHAINE_LIGNE) {
         if(InterfaceDonnees::URGENCE) {
-            memoEtat = etatPresent;
+            InterfaceDonnees::URGENCE = false;
+             memoEtat = ETAT_PAUSE;
             etatSuivant = ETAT_URGENCE;
         }
-        else if(InterfaceDonnees::CARTON_EN_COURS->finCarton(InterfaceDonnees::LIGNES_EN_COURS))
-            etatSuivant = FIN_TISSAGE;
-        else
-            etatSuivant = PILOTAGE_ELECTROAIMANT;
-    }
-    else if(etatPresent == FIN_TISSAGE) {
-        if(InterfaceDonnees::URGENCE) {
-            memoEtat = etatPresent;
-            etatSuivant = ETAT_URGENCE;
-        }
-        else
+        else if(InterfaceDonnees::FIN) {
+            InterfaceDonnees::FIN = false;
             etatSuivant = ATTENTE;
+        }
+        else if(!InterfaceSimu::valTOR) {
+            calculProchaineLigne();
+            vectLigne = InterfaceDonnees::CARTON_EN_COURS->getLigneNoirBlanc(InterfaceDonnees::LIGNES_EN_COURS);
+            time = QTime::currentTime();
+            etatSuivant = PILOTAGE_ELECTROAIMANT;
+        }
+        else
+            etatSuivant = etatPresent;
     }
     else if(etatPresent == ETAT_URGENCE) {
-        if(InterfaceDonnees::REPRISE)
+        if(InterfaceDonnees::FIN) {
+            InterfaceDonnees::FIN = false;
+            etatSuivant = ATTENTE;
+        }
+        else if(InterfaceDonnees::REDEMARRAGE) {
+            InterfaceDonnees::REDEMARRAGE = false;
             etatSuivant = memoEtat;
+        }
         else
             etatSuivant = etatPresent;
     }
@@ -93,19 +126,18 @@ void MachineAEtat::activer() {
     etatPresent = etatSuivant;
 
     //BLOC G
-    if(etatPresent == PILOTAGE_ELECTROAIMANT) {
-        pilotageEA();
-    }
-    else if(etatPresent == PROCHAINE_LIGNE) {
-        InterfaceDonnees::LIGNES_EN_COURS++;
-        vectLigne = InterfaceDonnees::CARTON_EN_COURS->getLigneNoirBlanc(InterfaceDonnees::LIGNES_EN_COURS);
-    }
-    else if(etatPresent == FIN_TISSAGE) {
-        InterfaceDonnees::FIN = true;
-    }
-    else if(etatPresent == TEMPS_ECOULE) {
+    if(etatPresent == ATTENTE)
+        InterfaceDonnees::LIGNES_EN_COURS = 0;
+
+    if(etatPresent == ETAT_PAUSE)
         InterfaceDonnees::PAUSE = true;
-    }
+    else
+        InterfaceDonnees::PAUSE = false;
+
+    if(etatPresent == PILOTAGE_ELECTROAIMANT)
+        pilotageEA();
+    else
+        resetEA();
 }
 
 int MachineAEtat::getEtatPresent() {

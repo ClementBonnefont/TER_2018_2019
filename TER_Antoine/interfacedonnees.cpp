@@ -9,3 +9,4 @@ bool InterfaceDonnees::REPRISE = false;
 bool InterfaceDonnees::URGENCE = false;
 int InterfaceDonnees::MEMO_ETAT_PRESENT = 0;
 bool InterfaceDonnees::SENS_NORMAL = true;
+bool InterfaceDonnees::REDEMARRAGE = false;

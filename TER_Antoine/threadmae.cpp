@@ -1,5 +1,4 @@
 #include "threadmae.h"
-#include <QDebug>
 
 ThreadMae::ThreadMae(ProtoInterface* proto, MachineAEtat* mae) {
     this->mae = mae;
@@ -10,11 +9,12 @@ void ThreadMae::run() {
     int i = 0;
     while(isRunning()) {
         mae->activer();
-        if(i == 1000) {
+        if(i == 200) {
             proto->emit refreshCadres();
+            proto->setLabelEtatPresent(mae->getEtatPresent());
+            proto->setLabelLigne(InterfaceDonnees::LIGNES_EN_COURS+1);
             i = 0;
         }
         i++;
-        proto->setLabel(mae->getEtatPresent());
     }
 }

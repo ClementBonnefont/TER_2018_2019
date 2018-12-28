@@ -1,4 +1,4 @@
-#include "Couleur.h"
+#include "couleur.h"
 
 
 Couleur::Couleur(int r, int g, int b)
@@ -20,13 +20,13 @@ void Couleur::setBlancNoir(){
         this->b = 0;
     }
 }
-bool Couleur::isNoir(){
+bool Couleur::isBlanc(){
     if(this->r != 0 && this->g != 0 && this->b != 0){
         return true;
     }
         return false;
 }
-bool Couleur::isBlanc(){
+bool Couleur::isNoir(){
     if(this->r == 0 && this->g == 0 && this->b == 0){
         return true;
     }

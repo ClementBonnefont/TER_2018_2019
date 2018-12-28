@@ -1,8 +1,7 @@
 #ifndef MACHINEAETAT_H
 #define MACHINEAETAT_H
 
-#include <QTimer>
-#include <QDebug>
+#include <QTime>
 #include "interfacedonnees.h"
 
 //Simulation
@@ -10,28 +9,27 @@
 
 #define ATTENTE 0
 #define PILOTAGE_ELECTROAIMANT 1
-#define TEMPS_ECOULE 2
+#define ETAT_PAUSE 2
 #define PROCHAINE_LIGNE 3
-#define FIN_TISSAGE 4
-#define ETAT_URGENCE 5
+#define ETAT_URGENCE 4
 
 class MachineAEtat
 {
 private :
     int etatPresent;
     int etatSuivant;
-    QTimer timer;
     int memoEtat;
     QList<int> vectLigne;
+    QTime time;
 
 public:
     MachineAEtat();
-    void lancerTimer(int);
-    int getTimeTimer();
     bool finTempo();
     void pilotageEA();
+    void resetEA();
     void activer();
     int getEtatPresent();
+    void calculProchaineLigne();
 };
 
 #endif // MACHINEAETAT_H

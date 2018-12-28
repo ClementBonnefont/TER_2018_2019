@@ -15,6 +15,7 @@ public:
     static bool URGENCE;
     static int MEMO_ETAT_PRESENT;
     static bool SENS_NORMAL;
+    static bool REDEMARRAGE;
 };
 
 #endif // INTERFACEDONNEES_H

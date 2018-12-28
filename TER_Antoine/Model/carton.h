@@ -35,7 +35,7 @@ public:
     Carton operator=(Carton);
     QList<QList<Couleur>> getMatrice();
     string getChemin();
-
+    int getNbLigne();
 };
 
 #endif // CARTON_H
