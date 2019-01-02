@@ -1,17 +1,19 @@
 #include "carton.h"
 
-Carton::Carton(string chemin, string nom, string date, int nbL)
+Carton::Carton(string chemin, string nom, string date, int nbL, int nbColonneConnue)
 {
     this->chemin = chemin;
     this->nom = nom;
     this->date = date;
     this->nbLigne = nbL;
+    this->nbColonneConnue = nbColonneConnue;
 }
 Carton::Carton(Carton& copy){
     this->chemin = copy.chemin;
     this->nom = copy.nom;
     this->date = copy.date;
     this->nbLigne = copy.nbLigne;
+    this->nbColonneConnue = copy.nbColonneConnue;
     QList<Couleur> ligne;
     for(int i = 0; i < nbLigne; i++) {
         for(int j = 0; j < 24; j++) {
@@ -22,20 +24,26 @@ Carton::Carton(Carton& copy){
     }
 }
 
+
+
 void Carton::charger(string chemin)
 {
+    this->chemin = chemin;
     const char * c = chemin.c_str();
     QImage image(c);
+
+    this->nom = chemin.substr(chemin.find_last_of("\\")+1);
     this->nbLigne = image.height();
+    this->nbColonneConnue = image.width();
     QList<Couleur> ligne;
 
     for(int i = 0; i < nbLigne; i++) {
         for(int j = 0; j < 24; j++) {
-            if (j< image.width()){
+            if (j< nbColonneConnue){
                 ligne.append(Couleur(qRed(image.pixel(j,i)), qGreen(image.pixel(j,i)), qBlue(image.pixel(j,i))));
 
             }else{
-                ligne.append(Couleur(0, 0, 0));
+                ligne.append(Couleur(255, 255, 255));
             }
 
         }
@@ -54,7 +62,7 @@ void Carton::affichageCarton()
 
     cout << "Nom du carton : "<<this->nom << endl;
     cout << "Nombre de ligne : "<<this->nbLigne << endl;
-    cout << "Nombre de colonne : "<<this->nbColonne << endl;
+    cout << "Nombre de colonne : "<<this->nbColonneConnue << endl;
     cout << "Chemin : "<<this->chemin << endl;
     cout << "Donnée : " << endl;
     cout << "[" << endl;
@@ -68,30 +76,7 @@ void Carton::affichageCarton()
     cout << "]" << endl;
 }
 
-Carton Carton::operator=(Carton copy){
-    this->chemin = copy.chemin;
-    this->nom = copy.nom;
-    this->date = copy.date;
-    this->nbLigne = copy.nbLigne;
-    QList<Couleur> ligne;
-    for(int i = 0; i < nbLigne; i++) {
-        for(int j = 0; j < 24; j++) {
-            ligne.append(Couleur(copy.matrice[i][j].getR(),copy.matrice[i][j].getG(),copy.matrice[i][j].getB()));
-        }
-        matrice.append(ligne);
-        ligne.clear();
-    }
-    return *this;
-}
-void Carton::saveCartonAs(string chemin, string nom)
-{
-    Carton copi(*this);
-    copi.chemin = chemin;
-    if (nom != "")
-        copi.nom = nom;
-    *this = copi;
-    this->saveCarton();
-}
+
 
 //sauvegarde le carton en fonction du bon format
 void Carton::saveCarton()
@@ -129,6 +114,8 @@ QList<int> Carton::getLigneNoirBlanc(int indexLigne){
             ligneNoirBlanc.append(0);
         }else if (item.isNoir()){
             ligneNoirBlanc.append(1);
+        }else{
+            ligneNoirBlanc.append(0);
         }
     }
     return ligneNoirBlanc;
@@ -163,7 +150,14 @@ QList<int> Carton::getLigneNoirBlanc(int indexLigne){
  {
      return this->chemin;
  }
+ QTextStream& operator <<(QTextStream& out, Carton &c){
+    out << QString::fromStdString(c.chemin) <<endl;
+    return out;
+ }
 
- int Carton::getNbLigne() {
-     return this->nbLigne;
+ int Carton::getNbColonneConnue(){
+     return this->nbColonneConnue;
+ }
+ int Carton::getNbLigne(){
+    return this->nbLigne;
  }

@@ -2,25 +2,19 @@
 #define MEMOIRE_H
 #include <iostream>
 #include "carton.h"
-#include <QThread>
-#include <QDir>
+#include "interfacedonnees.h"
 using namespace std;
 
 
-//ce model enregistre la ligne en cours, le carton en cours
-class Memoire : QThread
+class Memoire
 {
-private:
-    string repertoireDeSauvegarde;
-    Carton cartonEnCours;
-    int ligneEnCours;
+
 public:
-    Memoire(Carton, int ligne = 0, string = "");
-    void startMemorisation();
-    void stopMemorisation();
-    void setCartonEnCours(Carton);
-    void setLigneEnCours(int);
-    void run() override;
+    static bool CHARGE_MEMOIRE();
+    static bool SAVE_MEMOIRE();
+
+    static string REPERTOIRE_DE_SAUVEGARDE;
+
 };
 
 #endif // MEMOIRE_H
