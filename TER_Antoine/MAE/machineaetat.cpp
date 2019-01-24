@@ -1,10 +1,10 @@
 #include "machineaetat.h"
 
-MachineAEtat::MachineAEtat()
+MachineAEtat::MachineAEtat(MainWindow* w)
 {
-    etatPresent = ATTENTE;
-    memoEtat = ATTENTE;
-    vectLigne = InterfaceDonnees::CARTON_EN_COURS->getLigneNoirBlanc(InterfaceDonnees::LIGNES_EN_COURS);
+    this->etatPresent = ATTENTE;
+    this->memoEtat = ATTENTE;
+    this->ihm = w;
 }
 
 bool MachineAEtat::finTempo() {
@@ -14,16 +14,21 @@ bool MachineAEtat::finTempo() {
 
 void MachineAEtat::pilotageEA() {
     for(int i = 0; i < 24; i++) {
-        if(vectLigne[i] == 0)
+        if(vectLigne[i] == 0) {
             InterfaceSimu::valEA[i] = false;
-        else
+        }
+        else {
             InterfaceSimu::valEA[i] = true;
+        }
     }
+    SPI::digitalWriteSPI(listToHexa(this->vectLigne));
 }
 
 void MachineAEtat::resetEA() {
-    for(int i = 0; i < 24; i++)
+    for(int i = 0; i < 24; i++) {
         InterfaceSimu::valEA[i] = false;
+    }
+    SPI::digitalWriteSPI(0);
 }
 
 void MachineAEtat::calculProchaineLigne() {
@@ -39,6 +44,14 @@ void MachineAEtat::calculProchaineLigne() {
     }
 }
 
+unsigned long MachineAEtat::listToHexa(QList<int> l) {
+    unsigned long hexaReturn = 0x00;
+    for(int  i = 0; i < 24; i++) {
+        hexaReturn += l[i] << i;
+    }
+    return hexaReturn;
+}
+
 void MachineAEtat::activer() {
     //BLOC F
     if(etatPresent == ATTENTE) {
@@ -49,6 +62,7 @@ void MachineAEtat::activer() {
         }
         else if(InterfaceDonnees::DEBUT) {
             InterfaceDonnees::DEBUT = false;
+            vectLigne = InterfaceDonnees::CARTON_EN_COURS->getLigneNoirBlanc(InterfaceDonnees::LIGNES_EN_COURS);
             time = QTime::currentTime();
             etatSuivant = PILOTAGE_ELECTROAIMANT;
         }
@@ -65,8 +79,10 @@ void MachineAEtat::activer() {
             InterfaceDonnees::FIN = false;
             etatSuivant = ATTENTE;
         }
-        else if(InterfaceDonnees::PAUSE || finTempo())
+        else if(InterfaceDonnees::PAUSE || finTempo()) {
+            this->ihm->emit refreshBouton();
             etatSuivant = ETAT_PAUSE;
+        }
         else if(InterfaceSimu::valTOR && !finTempo())
             etatSuivant = PROCHAINE_LIGNE;
         else
@@ -84,6 +100,7 @@ void MachineAEtat::activer() {
         }
         else if(InterfaceDonnees::REPRISE) {
             InterfaceDonnees::REPRISE = false;
+            this->ihm->emit refreshBouton();
             time = QTime::currentTime();
             etatSuivant = PILOTAGE_ELECTROAIMANT;
         }
@@ -100,8 +117,13 @@ void MachineAEtat::activer() {
             InterfaceDonnees::FIN = false;
             etatSuivant = ATTENTE;
         }
+        else if(InterfaceDonnees::PAUSE) {
+            this->ihm->emit refreshBouton();
+            etatSuivant = ETAT_PAUSE;
+        }
         else if(!InterfaceSimu::valTOR) {
             calculProchaineLigne();
+            this->ihm->emit refreshLigne();
             vectLigne = InterfaceDonnees::CARTON_EN_COURS->getLigneNoirBlanc(InterfaceDonnees::LIGNES_EN_COURS);
             time = QTime::currentTime();
             etatSuivant = PILOTAGE_ELECTROAIMANT;

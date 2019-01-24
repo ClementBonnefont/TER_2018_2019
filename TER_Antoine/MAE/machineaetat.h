@@ -2,10 +2,14 @@
 #define MACHINEAETAT_H
 
 #include <QTime>
-#include "interfacedonnees.h"
+#include "Model/interfacedonnees.h"
+#include "IHM/mainwindow.h"
 
 //Simulation
-#include "../../ProtoInterfaceCmd/ProtoInterfaceCmd/protointerface.h"
+#include "IHM_MAE/protointerface.h"
+
+//SPI
+#include "spi.h"
 
 #define ATTENTE 0
 #define PILOTAGE_ELECTROAIMANT 1
@@ -21,15 +25,17 @@ private :
     int memoEtat;
     QList<int> vectLigne;
     QTime time;
+    MainWindow* ihm;
 
 public:
-    MachineAEtat();
+    MachineAEtat(MainWindow* ihm);
     bool finTempo();
     void pilotageEA();
     void resetEA();
     void activer();
     int getEtatPresent();
     void calculProchaineLigne();
+    unsigned long listToHexa(QList<int> l);
 };
 
 #endif // MACHINEAETAT_H

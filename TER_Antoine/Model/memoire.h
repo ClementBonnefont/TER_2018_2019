@@ -3,6 +3,7 @@
 #include <iostream>
 #include "carton.h"
 #include "interfacedonnees.h"
+#include <QFile>
 using namespace std;
 
 

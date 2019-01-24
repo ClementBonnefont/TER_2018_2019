@@ -1,17 +1,24 @@
+#include "IHM/mainwindow.h"
+#include "MAE/threadmae.h"
 #include <QApplication>
-#include "../../ProtoInterfaceCmd/ProtoInterfaceCmd/protointerface.h"
-#include "threadmae.h"
 
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
-    InterfaceDonnees::CARTON_EN_COURS->charger("C:/Users/ville/Documents/UPSSITECH/2A/TER/carton20x240.bmp");
-    ProtoInterface w;
-    MachineAEtat *mae = new MachineAEtat;
-    ThreadMae thread(&w, mae);
+    QApplication a(argc, argv);
+    //Interfaces graphiques
+    MainWindow w;
+    ProtoInterface wSimu;
+
+    //Machine à état
+    MachineAEtat *mae = new MachineAEtat(&w);
+    ThreadMae thread(&w, &wSimu, mae);
+
+    //SPI
+    SPI spi;
 
     w.show();
+    wSimu.show();
     thread.start();
 
-    return app.exec();
+    return a.exec();
 }

@@ -1,7 +1,7 @@
 #ifndef COULEUR_H
 #define COULEUR_H
 #include <iostream>
-#include <QTextStream>
+
 using namespace std;
 
 class Couleur
@@ -25,8 +25,6 @@ public:
     void editCouleur(int, int, int);
     void affichageCouleur();
     friend ostream& operator<<(ostream&,Couleur&);
-    friend QTextStream& operator <<(QTextStream& out, Couleur& c);
-
 };
 
 #endif // COULEUR_H
