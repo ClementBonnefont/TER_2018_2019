@@ -1,7 +1,7 @@
 #ifndef SPI_H
 #define SPI_H
 
-//#include <wiringPi.h>
+#include <wiringPi.h>
 
 class SPI
 {
