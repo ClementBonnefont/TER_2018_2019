@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setWindowTitle("Machine à tisser");
     setFixedSize(1280,650);
+    //setFixedSize(650,1280);
     //Déclaration des zones de la fenêtre
     m_widgetprincipal = new QWidget(this);
     mv_main = new QVBoxLayout(this);
@@ -35,11 +36,11 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 */
     for(int i=0; i<24;i++){
-        for(int j=0;j<10;j++){
+        for(int j=0;j<52;j++){
             QPen pen(Qt::black, 1, Qt::SolidLine);
             QColor color(0,255,255);
             QBrush brush(color);
-            rectangle = new QRect(0+(i*10), 0+(j*10), 10, 10);
+            rectangle = new QRect((i*24), (j*24), 24, 24);
             scene->addRect(*rectangle,pen,brush);
         }
     }
@@ -121,27 +122,31 @@ void MainWindow::chargementCarton(){
      //       chemin[i] = '\\';
        // }
     //}
-
     cout << chemin << endl;
 
-    ControllerCarton controlCarton(chemin);
-    controlCarton.charger(chemin);
-    scene->clear();
+        ControllerCarton controlCarton(chemin);
+        controlCarton.charger(chemin);
+        delete scene;
+        scene = new QGraphicsScene();
+        view->setScene(scene);
+        int tailleRec = 550/(controlCarton.getNbColonneConnue());
+        for(int i=0; i<controlCarton.getNbColonneConnue();i++){
+            for(int j=0;j<controlCarton.getNbLigne();j++){
+                QPen pen(Qt::black, 1, Qt::SolidLine);
+                int r = controlCarton.getMatrice()[j][i].getR();
+                int g = controlCarton.getMatrice()[j][i].getG();
+                int b = controlCarton.getMatrice()[j][i].getB();
+                QColor color(r,g,b);
+                QBrush brush(color);
 
-    for(int i=0; i<controlCarton.getNbLigne();i++){
-        for(int j=0;j<controlCarton.getNbColonneConnue();j++){
-            QPen pen(Qt::black, 1, Qt::SolidLine);
-            int r = controlCarton.getMatrice()[i][j].getR();
-            int g = controlCarton.getMatrice()[i][j].getG();
-            int b = controlCarton.getMatrice()[i][j].getB();
-            QColor color(r,g,b);
-            QBrush brush(color);
-            rectangle = new QRect(0+(i*10), 0+(j*10), 10, 10);
-            scene->addRect(*rectangle,pen,brush);
+                rectangle = new QRect((i*tailleRec), (j*tailleRec), tailleRec, tailleRec);
+                scene->addRect(*rectangle,pen,brush);
+            }
         }
-    }
-
-    InterfaceDonnees::CARTON_EN_COURS->charger(chemin);
+        rectangleLigne = new QRect(-(tailleRec/2),0,tailleRec*controlCarton.getNbColonneConnue()+ tailleRec ,tailleRec);
+        QPen penTest(Qt::red,1,Qt::SolidLine);
+        scene->addRect(*rectangleLigne,penTest);
+        InterfaceDonnees::CARTON_EN_COURS->charger(chemin);
 
 }
 
@@ -172,5 +177,9 @@ void MainWindow::repaintBouton() {
 }
 
 void MainWindow::repaintLigne(){
-
+//    int tailleRec = 550/(controlCarton.getNbColonneConnue());
+//    rectangleLigne->moveBottom(tailleRec*InterfaceDonnees::LIGNES_EN_COURS);
+//        QPen penTest(Qt::red,1,Qt::SolidLine);
+//        scene->addRect(*rectangleLigne,penTest);
+//        scene->update();
 }

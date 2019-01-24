@@ -49,6 +49,7 @@ private:
     QGraphicsView* view;
     QGraphicsScene * scene;
     QRect *rectangle;
+    QRect* rectangleLigne;
 
     QHBoxLayout* mh_chargerCarton;
     QHBoxLayout* mh_start;
