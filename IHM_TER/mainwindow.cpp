@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QGraphicsTextItem>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -45,6 +46,10 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
 
+
+
+
+
     view->setScene(scene);
 
     //Fin GRILLE
@@ -67,12 +72,18 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(chargerCarton, SIGNAL(clicked()), this, SLOT(chargementCarton()));
 
     start = new QPushButton(m_widgetprincipal);
+    start->setEnabled(false);
+    //!!!!!!!!!!!!!!!!!!!!!!
     start->setText("START");
+    //!!!!!!!!!!!!!!!!!!!!!!
     start->setStyleSheet("background-color: green");
     connect(start, SIGNAL(clicked()),this, SLOT(start_appli()));
 
     stop = new QPushButton(m_widgetprincipal);
     stop->setText("STOP");
+    //!!!!!!!!!!!!!!!!!!!!!
+    stop->setEnabled(false);
+    //!!!!!!!!!!!!!!!!!!!!!
     stop->setStyleSheet("background-color: red");
     connect(stop, SIGNAL(clicked()),this, SLOT(stop_appli()));
 
@@ -125,7 +136,11 @@ void MainWindow::chargementCarton(){
 
     ControllerCarton controlCarton(chemin);
     controlCarton.charger(chemin);
-    scene->clear();
+
+    delete scene;
+    scene = new QGraphicsScene();
+    view->setScene(scene);
+
 
     for(int i=0; i<controlCarton.getNbLigne();i++){
         for(int j=0;j<controlCarton.getNbColonneConnue();j++){
@@ -137,8 +152,34 @@ void MainWindow::chargementCarton(){
             QBrush brush(color);
             rectangle = new QRect(0+(i*10), 0+(j*10), 10, 10);
             scene->addRect(*rectangle,pen,brush);
+
+
         }
+
     }
+
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    for(int j=0;j<controlCarton.getNbColonneConnue();j++){
+        QGraphicsTextItem *text = scene->addText(QString::number(j+1),QFont("Comic Sans MS",4));;
+        text->setPos(-15,0+(j*10));
+    }
+
+    for(int j=0;j<controlCarton.getNbLigne();j++){
+        QGraphicsTextItem *textH = scene->addText(QString::number(j+1),QFont("Comic Sans MS",4));;
+        textH->setPos(0+(j*10),-15);
+        QGraphicsTextItem *textB = scene->addText(QString::number(j+1),QFont("Comic Sans MS",4));;
+        textB->setPos(0+(j*10),((controlCarton.getNbColonneConnue()*10)));
+    }
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    QRect* rectangleTest = new QRect(-10,0,10*(controlCarton.getNbLigne()+2),10);
+    QPen penTest(Qt::red,1,Qt::SolidLine);
+
+    scene->addRect(*rectangleTest,penTest);
+
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    start->setEnabled(true);
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     InterfaceDonnees::CARTON_EN_COURS->charger(chemin);
 
@@ -150,12 +191,22 @@ void MainWindow::start_appli(){
     InterfaceDonnees::FIN = false;
     choixSens* choix = new choixSens;
     choix->show();
+
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    stop->setEnabled(true);
+    start->setEnabled(false);
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }
 
 //Méthode pour stopper la machine à état
 void MainWindow::stop_appli(){
     InterfaceDonnees::DEBUT = false;
     InterfaceDonnees::FIN = true;
+
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    start->setEnabled(true);
+    stop->setEnabled(false);
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 }
 

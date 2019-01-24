@@ -16,6 +16,7 @@ choixSens::choixSens()
     mh_choix->addLayout(mh_normal);
     mh_choix->addLayout(mh_inverse);
 
+    QSize s_normal = QSize(100,100);
     QSize s_inverse = QSize(100,100);
 
     b_normal = new QPushButton(m_widget);
@@ -38,10 +39,12 @@ choixSens::choixSens()
 
 void choixSens::normal(){
     InterfaceDonnees::SENS_NORMAL = true;
+	
     this->close();
 }
 
 void choixSens::inverse(){
     InterfaceDonnees::SENS_NORMAL = false;
+	
     this->close();
 }
