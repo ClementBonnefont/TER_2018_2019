@@ -17,24 +17,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     mh_main = new QHBoxLayout(this);
 
-    //Placement grille
-    //QPushButton* grille = new QPushButton(m_widgetprincipal);
-    //grille->setText("GRILLE");
-
     //GRILLE
     view = new QGraphicsView();
     scene = new QGraphicsScene();
 
 
-/*
-    int list[24][10];
-
-    for(int i=0;i<24;i++){
-        for(int j=0;j<10;j++){
-             list[i][j] = 0;
-        }
-    }
-*/
     for(int i=0; i<24;i++){
         for(int j=0;j<52;j++){
             QPen pen(Qt::black, 1, Qt::SolidLine);
@@ -68,12 +55,14 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(chargerCarton, SIGNAL(clicked()), this, SLOT(chargementCarton()));
 
     start = new QPushButton(m_widgetprincipal);
+    start->setEnabled(false);
     start->setText("START");
     start->setStyleSheet("background-color: green");
     connect(start, SIGNAL(clicked()),this, SLOT(start_appli()));
 
     stop = new QPushButton(m_widgetprincipal);
     stop->setText("STOP");
+    stop->setEnabled(false);
     stop->setStyleSheet("background-color: red");
     connect(stop, SIGNAL(clicked()),this, SLOT(stop_appli()));
 
@@ -141,6 +130,7 @@ void MainWindow::chargementCarton(){
         }
 
         repaintLigne();
+        start->setEnabled(true);
         InterfaceDonnees::CARTON_EN_COURS->charger(chemin);
 }
 
@@ -148,11 +138,15 @@ void MainWindow::chargementCarton(){
 void MainWindow::start_appli(){
     choixSens* choix = new choixSens;
     choix->show();
+    stop->setEnabled(true);
+    start->setEnabled(false);
 }
 
 //Méthode pour stopper la machine à état
 void MainWindow::stop_appli(){
     InterfaceDonnees::FIN = true;
+    start->setEnabled(true);
+    stop->setEnabled(false);
 }
 
 //Méthode pour prendre en compte la mise en pause de la machine à état
@@ -176,6 +170,7 @@ void MainWindow::repaintLigne(){
     view->setScene(scene);
     tailleRec = 550/(controlCarton.getNbColonneConnue());
     int k = 0, r, g, b;
+    QGraphicsTextItem *numeroLigne;
     for(int i=(InterfaceDonnees::LIGNES_EN_COURS-ligneEnPlus); k<controlCarton.getNbLigne()+ligneEnPlus;i++){
         if (i < 0){
             i = i+ controlCarton.getNbLigne();
@@ -190,12 +185,21 @@ void MainWindow::repaintLigne(){
             QColor color(r,g,b);
             QBrush brush(color);
             delete rectangle;
-            rectangle = new QRect((j*tailleRec), (k*tailleRec), tailleRec, tailleRec);
+            rectangle = new QRect(tailleRec+(j*tailleRec), tailleRec+(k*tailleRec), tailleRec, tailleRec);
             scene->addRect(*rectangle,pen,brush);
+
         }
+        numeroLigne = scene->addText(QString::number(i),QFont("Comic Sans MS",10));
+        numeroLigne->setPos(0,tailleRec+(k*tailleRec));
         k++;
     }
-    rectangleLigne = new QRect(-(tailleRec/2),ligneEnPlus*tailleRec,tailleRec*controlCarton.getNbColonneConnue()+ tailleRec ,tailleRec);
+    QGraphicsTextItem *numeroColonne;
+    for(int j=0;j<controlCarton.getNbColonneConnue();j++){
+        numeroColonne = scene->addText(QString::number(j),QFont("Comic Sans MS",10));
+        numeroColonne->setPos(tailleRec+tailleRec*j,0);
+
+    }
+    rectangleLigne = new QRect(0,tailleRec+ligneEnPlus*tailleRec,tailleRec*(controlCarton.getNbColonneConnue()+1) ,tailleRec);
     QPen penTest(Qt::red,1,Qt::SolidLine);
     scene->addRect(*rectangleLigne,penTest);
 }
