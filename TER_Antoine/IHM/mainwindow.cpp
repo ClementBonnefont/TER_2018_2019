@@ -114,41 +114,34 @@ void MainWindow::chargementCarton(){
     QFileInfo file(str);
     QString qChemin = file.filePath();
     string chemin = qChemin.toStdString();
-    //cout << qChemin.toStdString() << endl;
-    //char ch = '/';
-    //boost::replace_all(chemin, "/", "\\");
-    //for(unsigned int i =0 ; i<chemin.size();i++){
-    //    if(chemin[i] == ch){
-     //       chemin[i] = '\\';
-       // }
-    //}
     cout << chemin << endl;
 
         controlCarton.charger(chemin);
+        if(controlCarton.getNbLigne()<=2){
+            ligneEnPlus = 0;
+        }else{
+            if(controlCarton.getNbLigne()<=5 || controlCarton.getNbColonneConnue() <8){
+                ligneEnPlus = 2;
+            }else{
+                if(controlCarton.getNbLigne()<12 || controlCarton.getNbColonneConnue() <10){
+                    ligneEnPlus = 3;
+                }else{
+                    if(controlCarton.getNbLigne()<20 || controlCarton.getNbColonneConnue() <16){
+                        ligneEnPlus = 5;
+                    }else{
+                        if(controlCarton.getNbLigne()<50){
+                            ligneEnPlus = 8;
+                        }else{
+                            ligneEnPlus = 12;
+                        }
 
-        delete scene;
-        scene = new QGraphicsScene();
-        view->setScene(scene);
-
-        tailleRec = 550/(controlCarton.getNbColonneConnue());
-        for(int i=0; i<controlCarton.getNbLigne();i++){
-            for(int j=0;j<controlCarton.getNbColonneConnue();j++){
-                QPen pen(Qt::black, 1, Qt::SolidLine);
-                int r = controlCarton.getMatrice()[i][j].getR();
-                int g = controlCarton.getMatrice()[i][j].getG();
-                int b = controlCarton.getMatrice()[i][j].getB();
-                QColor color(r,g,b);
-                QBrush brush(color);
-
-                rectangle = new QRect((j*tailleRec), (i*tailleRec), tailleRec, tailleRec);
-                scene->addRect(*rectangle,pen,brush);
+                    }
+                }
             }
         }
-        rectangleLigne = new QRect(-(tailleRec/2),0,tailleRec*controlCarton.getNbColonneConnue()+ tailleRec ,tailleRec);
-        QPen penTest(Qt::red,1,Qt::SolidLine);
-        scene->addRect(*rectangleLigne,penTest);
-        InterfaceDonnees::CARTON_EN_COURS->charger(chemin);
 
+        repaintLigne();
+        InterfaceDonnees::CARTON_EN_COURS->charger(chemin);
 }
 
 //Méthode lié au bouton "START" pour lancer l'exécution de la machine
@@ -182,11 +175,11 @@ void MainWindow::repaintLigne(){
     scene = new QGraphicsScene();
     view->setScene(scene);
     tailleRec = 550/(controlCarton.getNbColonneConnue());
-    int k = 0;
-    int r;
-    int g;
-    int b;
-    for(int i=InterfaceDonnees::LIGNES_EN_COURS; k<controlCarton.getNbLigne();i++){
+    int k = 0, r, g, b;
+    for(int i=(InterfaceDonnees::LIGNES_EN_COURS-ligneEnPlus); k<controlCarton.getNbLigne()+ligneEnPlus;i++){
+        if (i < 0){
+            i = i+ controlCarton.getNbLigne();
+        }
         if (i == controlCarton.getNbLigne())
             i = 0;
         for(int j=0;j<controlCarton.getNbColonneConnue();j++){
@@ -197,12 +190,12 @@ void MainWindow::repaintLigne(){
             QColor color(r,g,b);
             QBrush brush(color);
             delete rectangle;
-            rectangle = new QRect((j*tailleRec), (i*tailleRec), tailleRec, tailleRec);
+            rectangle = new QRect((j*tailleRec), (k*tailleRec), tailleRec, tailleRec);
             scene->addRect(*rectangle,pen,brush);
         }
         k++;
     }
-    rectangleLigne = new QRect(-(tailleRec/2),0,tailleRec*controlCarton.getNbColonneConnue()+ tailleRec ,tailleRec);
+    rectangleLigne = new QRect(-(tailleRec/2),ligneEnPlus*tailleRec,tailleRec*controlCarton.getNbColonneConnue()+ tailleRec ,tailleRec);
     QPen penTest(Qt::red,1,Qt::SolidLine);
     scene->addRect(*rectangleLigne,penTest);
 }

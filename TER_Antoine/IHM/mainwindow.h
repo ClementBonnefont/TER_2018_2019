@@ -49,6 +49,7 @@ private:
     QGraphicsView* view;
     QGraphicsScene * scene;
     int tailleRec;
+    int ligneEnPlus;
     QRect *rectangle;
     QRect* rectangleLigne;
 
