@@ -130,7 +130,7 @@ void MachineAEtat::activer() {
             this->etatSuivant = this->etatPresent;
     }
     else if(etatPresent == ETAT_URGENCE) {
-        if(InterfaceDonnees::FIN) {
+        if(InterfaceDonnees::CARTON_EN_COURS->getChemin() == "" || InterfaceDonnees::FIN) {
             InterfaceDonnees::FIN = false;
             this->etatSuivant = ATTENTE;
         }
