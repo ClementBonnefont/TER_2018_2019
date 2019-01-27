@@ -13,6 +13,7 @@
 #include <QFileDialog>
 #include <QFileInfo>
 #include "choixsens.h"
+#include <QGraphicsTextItem>
 
 
 

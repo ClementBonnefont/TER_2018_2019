@@ -70,6 +70,8 @@ void MachineAEtat::activer() {
         }
         else if(InterfaceDonnees::FIN) {
             InterfaceDonnees::FIN = false;
+            InterfaceDonnees::LIGNES_EN_COURS = 0;
+            this->ihm->emit refreshLigne();
             this->etatSuivant = ATTENTE;
         }
         else if(InterfaceDonnees::PAUSE || finTempo()) {
@@ -94,6 +96,8 @@ void MachineAEtat::activer() {
             InterfaceDonnees::FIN = false;
             InterfaceDonnees::PAUSE = false;
             this->ihm->emit refreshBouton();
+            InterfaceDonnees::LIGNES_EN_COURS = 0;
+            this->ihm->emit refreshLigne();
             this->etatSuivant = ATTENTE;
         }
         else if(InterfaceDonnees::REPRISE) {
@@ -113,6 +117,8 @@ void MachineAEtat::activer() {
         }
         else if(InterfaceDonnees::FIN) {
             InterfaceDonnees::FIN = false;
+            InterfaceDonnees::LIGNES_EN_COURS = 0;
+            this->ihm->emit refreshLigne();
             this->etatSuivant = ATTENTE;
         }
         else if(InterfaceDonnees::PAUSE) {
@@ -132,6 +138,8 @@ void MachineAEtat::activer() {
     else if(etatPresent == ETAT_URGENCE) {
         if(InterfaceDonnees::CARTON_EN_COURS->getChemin() == "" || InterfaceDonnees::FIN) {
             InterfaceDonnees::FIN = false;
+            InterfaceDonnees::LIGNES_EN_COURS = 0;
+            this->ihm->emit refreshLigne();
             this->etatSuivant = ATTENTE;
         }
         else if(InterfaceDonnees::REDEMARRAGE) {
@@ -173,9 +181,6 @@ void MachineAEtat::activer() {
     this->etatPresent = this->etatSuivant;
 
     //BLOC G
-    if(this->etatPresent == ATTENTE)
-        InterfaceDonnees::LIGNES_EN_COURS = 0;
-
     if(this->etatPresent == PILOTAGE_ELECTROAIMANT)
         pilotageEA();
     else
