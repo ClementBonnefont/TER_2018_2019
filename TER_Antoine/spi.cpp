@@ -2,18 +2,18 @@
 
 SPI::SPI()
 {
-    wiringPiSetup();
-    pinMode(SER, OUTPUT);
-    pinMode(RCLK, OUTPUT);
-    pinMode(SRCLK, OUTPUT);
-    digitalWrite(SER, 0);
-    digitalWrite(SRCLK, 0);
-    digitalWrite(RCLK, 0);
-    digitalWriteSPI(0);
+//    wiringPiSetup();
+//    pinMode(SER, OUTPUT);
+//    pinMode(RCLK, OUTPUT);
+//    pinMode(SRCLK, OUTPUT);
+//    digitalWrite(SER, 0);
+//    digitalWrite(SRCLK, 0);
+//    digitalWrite(RCLK, 0);
+//    digitalWriteSPI(0);
 }
 
 void SPI::delayMS(int x) {
-    delayMicroseconds(x * 1000);
+//    delayMicroseconds(x * 1000);
 }
 
 //Charger sur un registre de 8 bits
@@ -22,7 +22,7 @@ void SPI::sipo(unsigned char byte)
     int i;
     for (i=0;i<8;i++)
     {
-        digitalWrite(SER,((byte & (0x80 >> i)) > 0));
+//        digitalWrite(SER,((byte & (0x80 >> i)) > 0));
         pulse(SRCLK);
     }
 }
@@ -30,8 +30,8 @@ void SPI::sipo(unsigned char byte)
 //Front montant
 void SPI::pulse(int pin)
 {
-    digitalWrite(pin, 1);
-    digitalWrite(pin, 0);
+//    digitalWrite(pin, 1);
+//    digitalWrite(pin, 0);
 }
 
 

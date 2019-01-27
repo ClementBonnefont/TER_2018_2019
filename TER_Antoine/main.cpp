@@ -10,8 +10,8 @@ int main(int argc, char *argv[])
     ProtoInterface wSimu;
 
     //Machine à état
-    MachineAEtat *mae = new MachineAEtat(&w);
-    ThreadMae thread(&w, &wSimu, mae);
+    MachineAEtat *mae = new MachineAEtat(&w, &wSimu);
+    ThreadMae thread(mae);
 
     //SPI
     SPI spi;

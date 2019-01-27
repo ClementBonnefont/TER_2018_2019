@@ -22,18 +22,19 @@ class MachineAEtat
 private :
     int etatPresent;
     int etatSuivant;
-    int memoEtat;
     QList<int> vectLigne;
     QTime time;
     MainWindow* ihm;
+    //Simulation
+    ProtoInterface* ihmSimu;
 
 public:
-    MachineAEtat(MainWindow* ihm);
+    MachineAEtat(MainWindow* w, ProtoInterface* wSimu = nullptr);
     bool finTempo();
+    void lancerTempo();
     void pilotageEA();
     void resetEA();
     void activer();
-    int getEtatPresent();
     void calculProchaineLigne();
     unsigned long listToHexa(QList<int> l);
 };
