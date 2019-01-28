@@ -12,7 +12,7 @@ INPUT(
 ./release\interfacesimu.o
 ./release\programme.o
 ./release\protointerface.o
-./release\spi.o
+./release\communication.o
 ./release\moc_choixsens.o
 ./release\moc_mainwindow.o
 ./release\moc_protointerface.o

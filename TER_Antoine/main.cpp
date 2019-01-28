@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     ThreadMae thread(mae);
 
     //SPI
-    SPI spi;
+    Communication com;
 
     w.show();
     wSimu.show();

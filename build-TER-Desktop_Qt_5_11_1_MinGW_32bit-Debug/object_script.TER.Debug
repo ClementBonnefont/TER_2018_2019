@@ -12,7 +12,7 @@ INPUT(
 ./debug\interfacesimu.o
 ./debug\programme.o
 ./debug\protointerface.o
-./debug\spi.o
+./debug\communication.o
 ./debug\moc_choixsens.o
 ./debug\moc_mainwindow.o
 ./debug\moc_protointerface.o

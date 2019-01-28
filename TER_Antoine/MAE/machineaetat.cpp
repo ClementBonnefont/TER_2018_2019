@@ -19,11 +19,11 @@ void MachineAEtat::lancerTempo() {
 }
 
 void MachineAEtat::pilotageEA() {
-    SPI::digitalWriteSPI(listToHexa(this->vectLigne));
+    Communication::digitalWriteSPI(listToHexa(this->vectLigne));
 }
 
 void MachineAEtat::resetEA() {
-    SPI::digitalWriteSPI(0);
+    Communication::digitalWriteSPI(0);
 }
 
 void MachineAEtat::calculProchaineLigne() {
@@ -79,7 +79,7 @@ void MachineAEtat::activer() {
             this->ihm->emit refreshBouton();
             this->etatSuivant = ETAT_PAUSE;
         }
-        else if(InterfaceSimu::valTOR && !finTempo()) {
+        else if(/*InterfaceSimu::valTOR*/ Communication::digitalReadValTor() && !finTempo()) {
             this->etatSuivant = PROCHAINE_LIGNE;
         }
         else
@@ -125,7 +125,7 @@ void MachineAEtat::activer() {
             this->ihm->emit refreshBouton();
             this->etatSuivant = ETAT_PAUSE;
         }
-        else if(!InterfaceSimu::valTOR) {
+        else if(!/*InterfaceSimu::valTOR*/Communication::digitalReadValTor()) {
             calculProchaineLigne();
             this->ihm->emit refreshLigne();
             this->vectLigne = InterfaceDonnees::CARTON_EN_COURS->getLigneNoirBlanc(InterfaceDonnees::LIGNES_EN_COURS);

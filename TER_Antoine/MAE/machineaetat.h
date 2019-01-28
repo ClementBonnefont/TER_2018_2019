@@ -9,7 +9,7 @@
 #include "IHM_MAE/protointerface.h"
 
 //SPI
-#include "spi.h"
+#include "communication.h"
 
 #define ATTENTE 0
 #define PILOTAGE_ELECTROAIMANT 1

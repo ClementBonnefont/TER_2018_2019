@@ -22,7 +22,7 @@ HEADERS += \
     IHM_MAE/interfacesimu.h \
     IHM_MAE/programme.h \
     IHM_MAE/protointerface.h \
-    spi.h
+    communication.h
 
 SOURCES += \
     Controller/ControllerCarton.cpp \
@@ -38,7 +38,7 @@ SOURCES += \
     IHM_MAE/interfacesimu.cpp \
     IHM_MAE/programme.cpp \
     IHM_MAE/protointerface.cpp \
-    spi.cpp
+    communication.cpp
 
 FORMS += \
     IHM/mainwindow.ui \
