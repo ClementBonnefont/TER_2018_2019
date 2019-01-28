@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProtoInterface</class>
+ <widget class="QMainWindow" name="ProtoInterface">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>747</width>
+    <height>561</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QFrame" name="fenetreConteneur">
+    <property name="geometry">
+     <rect>
+      <x>-20</x>
+      <y>20</y>
+      <width>751</width>
+      <height>551</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QWidget" name="gridLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>70</y>
+       <width>241</width>
+       <height>434</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="grilleCmdeAimants1">
+      <item row="3" column="0">
+       <widget class="QCheckBox" name="cmdE_4">
+        <property name="text">
+         <string>Cadre 4</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="1">
+       <widget class="QCheckBox" name="cmdE_23">
+        <property name="text">
+         <string>Cadre 23</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0">
+       <widget class="QCheckBox" name="cmdE_9">
+        <property name="text">
+         <string>Cadre 9</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0">
+       <widget class="QCheckBox" name="cmdE_10">
+        <property name="text">
+         <string>Cadre 10</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QCheckBox" name="cmdE_8">
+        <property name="text">
+         <string>Cadre 8</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QCheckBox" name="cmdE_7">
+        <property name="text">
+         <string>Cadre 7</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QCheckBox" name="cmdE_6">
+        <property name="text">
+         <string>Cadre 6</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QCheckBox" name="cmdE_5">
+        <property name="text">
+         <string>Cadre 5</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="0">
+       <widget class="QCheckBox" name="cmdE_11">
+        <property name="text">
+         <string>Cadre 11</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="0">
+       <widget class="QCheckBox" name="cmdE_12">
+        <property name="text">
+         <string>Cadre 12</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QCheckBox" name="cmdE_3">
+        <property name="text">
+         <string>Cadre 3</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="cmdE_2">
+        <property name="text">
+         <string>Cadre 2</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="1">
+       <widget class="QCheckBox" name="cmdE_24">
+        <property name="text">
+         <string>Cadre 24</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="1">
+       <widget class="QCheckBox" name="cmdE_22">
+        <property name="text">
+         <string>Cadre 22</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="1">
+       <widget class="QCheckBox" name="cmdE_21">
+        <property name="text">
+         <string>Cadre 21</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QCheckBox" name="cmdE_20">
+        <property name="text">
+         <string>Cadre 20</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QCheckBox" name="cmdE_19">
+        <property name="text">
+         <string>Cadre 19</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QCheckBox" name="cmdE_18">
+        <property name="text">
+         <string>Cadre 18</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QCheckBox" name="cmdE_17">
+        <property name="text">
+         <string>Cadre 17</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QCheckBox" name="cmdE_16">
+        <property name="text">
+         <string>Cadre 16</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QCheckBox" name="cmdE_15">
+        <property name="text">
+         <string>Cadre 15</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QCheckBox" name="cmdE_14">
+        <property name="text">
+         <string>Cadre 14</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QCheckBox" name="cmdE_13">
+        <property name="text">
+         <string>Cadre 13</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="cmdE_1">
+        <property name="text">
+         <string>Cadre 1</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="horizontalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>10</y>
+       <width>721</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="grilleTitre">
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="lTitre">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Programme de test du comportement du métier à tisser</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="gridLayoutWidget_5">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>70</y>
+       <width>424</width>
+       <height>141</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="grilleActions_2">
+      <item row="2" column="1">
+       <widget class="QCheckBox" name="cSensNormal">
+        <property name="text">
+         <string>Sens Normal</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QPushButton" name="bFin">
+        <property name="text">
+         <string>Fin Tissage</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QCheckBox" name="bTOR">
+        <property name="text">
+         <string>Valeur TOR</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QPushButton" name="bDebut">
+        <property name="text">
+         <string>Début Tissage</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="0">
+         <widget class="QPushButton" name="bPause">
+          <property name="text">
+           <string>Pause Tissage</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="2">
+       <widget class="QPushButton" name="bRetourSysteme">
+        <property name="text">
+         <string>Redémarrage Système</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QPushButton" name="bUrgence">
+        <property name="text">
+         <string>Arret Urgence</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="bReprise">
+        <property name="text">
+         <string>Reprise Tissage</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+     <zorder>cSensNormal</zorder>
+     <zorder>bFin</zorder>
+     <zorder>bTOR</zorder>
+     <zorder>bRetourSysteme</zorder>
+     <zorder>bUrgence</zorder>
+     <zorder>bReprise</zorder>
+     <zorder>bDebut</zorder>
+    </widget>
+    <widget class="QWidget" name="gridLayoutWidget_6">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>290</y>
+       <width>381</width>
+       <height>141</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="grilleActions_3">
+      <item row="1" column="0">
+       <layout class="QGridLayout" name="gridLayout_6">
+        <item row="0" column="0">
+         <widget class="QLabel" name="lTitreNbLignes">
+          <property name="text">
+           <string>Ligne en cours</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="lTitreVisuEtatMAE">
+        <property name="text">
+         <string>Visualisation Etat MAE</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="lVisuEtatMAE">
+        <property name="text">
+         <string>Etat Present</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="lNbLignes">
+        <property name="text">
+         <string>Numero Ligne</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>cmdE_1</tabstop>
+  <tabstop>cmdE_2</tabstop>
+  <tabstop>cmdE_3</tabstop>
+  <tabstop>cmdE_4</tabstop>
+  <tabstop>cmdE_5</tabstop>
+  <tabstop>cmdE_6</tabstop>
+  <tabstop>cmdE_7</tabstop>
+  <tabstop>cmdE_8</tabstop>
+  <tabstop>cmdE_9</tabstop>
+  <tabstop>cmdE_10</tabstop>
+  <tabstop>cmdE_11</tabstop>
+  <tabstop>cmdE_12</tabstop>
+  <tabstop>cmdE_13</tabstop>
+  <tabstop>cmdE_14</tabstop>
+  <tabstop>cmdE_15</tabstop>
+  <tabstop>cmdE_16</tabstop>
+  <tabstop>cmdE_17</tabstop>
+  <tabstop>cmdE_18</tabstop>
+  <tabstop>cmdE_19</tabstop>
+  <tabstop>cmdE_20</tabstop>
+  <tabstop>cmdE_21</tabstop>
+  <tabstop>cmdE_22</tabstop>
+  <tabstop>cmdE_23</tabstop>
+  <tabstop>cmdE_24</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
