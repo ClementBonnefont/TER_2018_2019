@@ -9,15 +9,15 @@ int main(int argc, char *argv[])
     MainWindow w;
     ProtoInterface wSimu;
 
-    //Machine à état
+    //Machine à états
     MachineAEtat *mae = new MachineAEtat(&w, &wSimu);
     ThreadMae thread(mae);
 
-    //SPI
+    //Communication
     Communication com;
 
     w.show();
-    wSimu.show();
+//    wSimu.show();
     thread.start();
 
     return a.exec();

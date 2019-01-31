@@ -28,6 +28,7 @@ Carton::Carton(Carton& copy){
 
 void Carton::charger(string chemin)
 {
+    matrice.clear();
     this->chemin = chemin;
     const char * c = chemin.c_str();
     QImage image(c);
@@ -41,7 +42,7 @@ void Carton::charger(string chemin)
                 ligne.append(Couleur(qRed(image.pixel(j,i)), qGreen(image.pixel(j,i)), qBlue(image.pixel(j,i))));
 
             }else{
-                ligne.append(Couleur(0, 0, 0));
+                ligne.append(Couleur(255, 255, 255));
             }
 
         }
@@ -55,24 +56,24 @@ void Carton::editCarton(int ligne, int colonne, Couleur couleur)
     this->matrice[ligne][colonne] = couleur;
 }
 
-void Carton::affichageCarton()
-{
+//void Carton::affichageCarton()
+//{
 
-    cout << "Nom du carton : "<<this->nom << endl;
-    cout << "Nombre de ligne : "<<this->nbLigne << endl;
-    cout << "Nombre de colonne : "<<this->nbColonne << endl;
-    cout << "Chemin : "<<this->chemin << endl;
-    cout << "Donnée : " << endl;
-    cout << "[" << endl;
-    for (int i(0); i< this->matrice.size() ; i++ ){
+//    cout << "Nom du carton : "<<this->nom << endl;
+//    cout << "Nombre de ligne : "<<this->nbLigne << endl;
+//    cout << "Nombre de colonne : "<<this->nbColonne << endl;
+//    cout << "Chemin : "<<this->chemin << endl;
+//    cout << "Donnée : " << endl;
+//    cout << "[" << endl;
+//    for (int i(0); i< this->matrice.size() ; i++ ){
 
-        for (int j(0); j< this->matrice[i].size() ; j++ ){
-            cout << this->matrice[i][j];
-        }
-        cout<< endl;
-    }
-    cout << "]" << endl;
-}
+//        for (int j(0); j< this->matrice[i].size() ; j++ ){
+//            cout << this->matrice[i][j];
+//        }
+//        cout<< endl;
+//    }
+//    cout << "]" << endl;
+//}
 
 Carton Carton::operator=(Carton copy){
     this->chemin = copy.chemin;
@@ -135,6 +136,8 @@ QList<int> Carton::getLigneNoirBlanc(int indexLigne){
             ligneNoirBlanc.append(0);
         }else if (item.isNoir()){
             ligneNoirBlanc.append(1);
+        }else{
+            ligneNoirBlanc.append(0);
         }
     }
     return ligneNoirBlanc;

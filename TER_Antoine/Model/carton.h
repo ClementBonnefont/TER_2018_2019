@@ -26,7 +26,7 @@ public:
     QList<Couleur> getLigne(int ligne);
     void charger(string chemin);
     void editCarton(int ligne, int colonne, Couleur couleur);
-    void affichageCarton();
+//    void affichageCarton();
     void saveCarton();
     void saveCartonAs(string chemin, string nom ="");
     bool finCarton(int ligne);

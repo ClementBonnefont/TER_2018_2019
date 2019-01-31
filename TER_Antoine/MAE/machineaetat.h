@@ -29,7 +29,7 @@ private :
     ProtoInterface* ihmSimu;
 
 public:
-    MachineAEtat(MainWindow* w, ProtoInterface* wSimu = nullptr);
+    MachineAEtat(MainWindow* w, ProtoInterface* wSimu);
     bool finTempo();
     void lancerTempo();
     void pilotageEA();

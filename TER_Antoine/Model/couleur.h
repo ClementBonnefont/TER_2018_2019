@@ -1,7 +1,6 @@
 #ifndef COULEUR_H
 #define COULEUR_H
 #include <iostream>
-
 using namespace std;
 
 class Couleur
@@ -24,7 +23,6 @@ public:
     int getG();
     void editCouleur(int, int, int);
     void affichageCouleur();
-    friend ostream& operator<<(ostream&,Couleur&);
 };
 
 #endif // COULEUR_H

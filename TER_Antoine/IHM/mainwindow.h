@@ -12,7 +12,6 @@
 #include "Model/interfacedonnees.h"
 #include <QFileDialog>
 #include <QFileInfo>
-#include "choixsens.h"
 #include <QGraphicsTextItem>
 
 
@@ -37,6 +36,7 @@ private slots:
     void pause_rep();
     void repaintBouton();
     void repaintLigne();
+    void choixDuSens();
 
 
 private:
@@ -58,11 +58,13 @@ private:
     QHBoxLayout* mh_start;
     QHBoxLayout* mh_stop;
     QHBoxLayout* mh_pause_reprise;
+    QHBoxLayout* mh_choix_sens;
 
     QPushButton* chargerCarton;
     QPushButton* start;
     QPushButton* stop;
     QPushButton* pause_reprise;
+    QPushButton* choix_sens;
 
 signals :
     void refreshBouton();

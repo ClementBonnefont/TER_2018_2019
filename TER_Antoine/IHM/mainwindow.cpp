@@ -7,8 +7,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 
     setWindowTitle("Machine à tisser");
-    setFixedSize(1280,650);
-    //setFixedSize(650,1280);
+    //setFixedSize(1280,650);
+    setFixedSize(720,1210);
     //Déclaration des zones de la fenêtre
     m_widgetprincipal = new QWidget(this);
     mv_main = new QVBoxLayout(this);
@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     for(int i=0; i<24;i++){
-        for(int j=0;j<52;j++){
+        for(int j=0;j<48;j++){
             QPen pen(Qt::black, 1, Qt::SolidLine);
             QColor color(0,255,255);
             QBrush brush(color);
@@ -43,11 +43,13 @@ MainWindow::MainWindow(QWidget *parent) :
     mh_start = new QHBoxLayout(m_widgetprincipal);
     mh_stop = new QHBoxLayout(m_widgetprincipal);
     mh_pause_reprise = new QHBoxLayout(m_widgetprincipal);
+    mh_choix_sens = new QHBoxLayout(m_widgetprincipal);
 
     mh_main->addLayout(mh_chargerCarton);
     mh_main->addLayout(mh_start);
     mh_main->addLayout(mh_stop);
     mh_main->addLayout(mh_pause_reprise);
+    mh_main->addLayout(mh_choix_sens);
 
     //Déclaration des boutons
     chargerCarton = new QPushButton(m_widgetprincipal);
@@ -68,15 +70,20 @@ MainWindow::MainWindow(QWidget *parent) :
 
     pause_reprise = new QPushButton(m_widgetprincipal);
     pause_reprise->setText("Pause");
+    pause_reprise->setEnabled(false);
     connect(pause_reprise, SIGNAL(clicked()),this, SLOT(pause_rep()));
 
-
+    choix_sens = new QPushButton(m_widgetprincipal);
+    choix_sens->setText("Choix sens");
+    choix_sens->setEnabled(false);
+    connect(choix_sens, SIGNAL(clicked()),this, SLOT(choixDuSens()));
 
     //Ajout des boutons dans le layout du bas
     mh_chargerCarton->addWidget(chargerCarton);
     mh_start->addWidget(start);
     mh_stop->addWidget(stop);
     mh_pause_reprise->addWidget(pause_reprise);
+    mh_choix_sens->addWidget(choix_sens);
 
     setCentralWidget(m_widgetprincipal);
 
@@ -115,29 +122,24 @@ void MainWindow::chargementCarton(){
                 if(controlCarton.getNbLigne()<12 || controlCarton.getNbColonneConnue() <10){
                     ligneEnPlus = 3;
                 }else{
-                    if(controlCarton.getNbLigne()<20 || controlCarton.getNbColonneConnue() <16){
-                        ligneEnPlus = 5;
-                    }else{
-                        if(controlCarton.getNbLigne()<50){
-                            ligneEnPlus = 8;
-                        }else{
-                            ligneEnPlus = 12;
-                        }
-
-                    }
+                    ligneEnPlus=5;
                 }
             }
         }
-
+        InterfaceDonnees::CARTON_EN_COURS->charger(chemin);
         repaintLigne();
         start->setEnabled(true);
-        InterfaceDonnees::CARTON_EN_COURS->charger(chemin);
+
 }
 
 //Méthode lié au bouton "START" pour lancer l'exécution de la machine
 void MainWindow::start_appli(){
-    choixSens* choix = new choixSens;
-    choix->show();
+    InterfaceDonnees::DEBUT = true;
+    InterfaceDonnees::SENS_NORMAL = true;
+    choix_sens->setText("Tisser");
+    choix_sens->setEnabled(true);
+    chargerCarton->setEnabled(false);
+    pause_reprise->setEnabled(true);
     stop->setEnabled(true);
     start->setEnabled(false);
 }
@@ -145,6 +147,10 @@ void MainWindow::start_appli(){
 //Méthode pour stopper la machine à état
 void MainWindow::stop_appli(){
     InterfaceDonnees::FIN = true;
+    choix_sens->setText("Choix sens");
+    choix_sens->setEnabled(false);
+    chargerCarton->setEnabled(true);
+    pause_reprise->setEnabled(false);
     start->setEnabled(true);
     stop->setEnabled(false);
 }
@@ -168,10 +174,17 @@ void MainWindow::repaintLigne(){
     delete scene;
     scene = new QGraphicsScene();
     view->setScene(scene);
-    tailleRec = 550/(controlCarton.getNbColonneConnue());
+    if(controlCarton.getNbColonneConnue()<12){
+        tailleRec = 550/(controlCarton.getNbColonneConnue());
+    }else{
+        tailleRec = 650/(controlCarton.getNbColonneConnue());
+    }
     int k = 0, r, g, b;
     QGraphicsTextItem *numeroLigne;
-    for(int i=(InterfaceDonnees::LIGNES_EN_COURS-ligneEnPlus); k<controlCarton.getNbLigne()+ligneEnPlus;i++){
+    int nbLignePaint = controlCarton.getNbLigne();
+    if(nbLignePaint>30)
+        nbLignePaint = 30;
+    for(int i=(InterfaceDonnees::LIGNES_EN_COURS-ligneEnPlus); k<nbLignePaint+ligneEnPlus;i++){
         if (i < 0){
             i = i+ controlCarton.getNbLigne();
         }
@@ -189,17 +202,25 @@ void MainWindow::repaintLigne(){
             scene->addRect(*rectangle,pen,brush);
 
         }
-        numeroLigne = scene->addText(QString::number(i),QFont("Comic Sans MS",10));
+        numeroLigne = scene->addText(QString::number(i+1),QFont("Comic Sans MS",10));
         numeroLigne->setPos(0,tailleRec+(k*tailleRec));
         k++;
     }
     QGraphicsTextItem *numeroColonne;
     for(int j=0;j<controlCarton.getNbColonneConnue();j++){
-        numeroColonne = scene->addText(QString::number(j),QFont("Comic Sans MS",10));
+        numeroColonne = scene->addText(QString::number(j+1),QFont("Comic Sans MS",10));
         numeroColonne->setPos(tailleRec+tailleRec*j,0);
 
     }
     rectangleLigne = new QRect(0,tailleRec+ligneEnPlus*tailleRec,tailleRec*(controlCarton.getNbColonneConnue()+1) ,tailleRec);
-    QPen penTest(Qt::red,1,Qt::SolidLine);
+    QPen penTest(Qt::red,4                                                                                          ,Qt::SolidLine);
     scene->addRect(*rectangleLigne,penTest);
+}
+
+void MainWindow::choixDuSens() {
+    InterfaceDonnees::SENS_NORMAL = !InterfaceDonnees::SENS_NORMAL;
+    if(InterfaceDonnees::SENS_NORMAL)
+        choix_sens->setText("Tisser");
+    else
+        choix_sens->setText("Détisser");
 }

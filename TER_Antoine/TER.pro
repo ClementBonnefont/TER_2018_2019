@@ -11,7 +11,6 @@ CONFIG += c++11
 
 HEADERS += \
     Controller/ControllerCarton.h \
-    IHM/choixsens.h \
     IHM/mainwindow.h \
     MAE/machineaetat.h \
     MAE/threadmae.h \
@@ -26,7 +25,6 @@ HEADERS += \
 
 SOURCES += \
     Controller/ControllerCarton.cpp \
-    IHM/choixsens.cpp \
     IHM/mainwindow.cpp \
     MAE/machineaetat.cpp \
     MAE/threadmae.cpp \

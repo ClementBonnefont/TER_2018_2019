@@ -153,28 +153,26 @@ void MachineAEtat::activer() {
     }
 
     //Simulation
-    if(this->ihmSimu != nullptr) {
-        if(this->etatPresent != this->etatSuivant) {
-            if(this->etatSuivant == PILOTAGE_ELECTROAIMANT) {
-                for(int i = 0; i < 24; i++) {
-                    if(this->vectLigne[i] == 0) {
-                        InterfaceSimu::valEA[i] = false;
-                    }
-                    else {
-                        InterfaceSimu::valEA[i] = true;
-                    }
-                }
-                this->ihmSimu->emit refreshCadres();
-            }
-            else if(this->etatPresent == PILOTAGE_ELECTROAIMANT) {
-                for(int i = 0; i < 24; i++) {
+    if(this->etatPresent != this->etatSuivant) {
+        if(this->etatSuivant == PILOTAGE_ELECTROAIMANT) {
+            for(int i = 0; i < 24; i++) {
+                if(this->vectLigne[i] == 0) {
                     InterfaceSimu::valEA[i] = false;
                 }
-                this->ihmSimu->emit refreshCadres();
+                else {
+                    InterfaceSimu::valEA[i] = true;
+                }
             }
-            this->ihmSimu->setLabelEtatPresent(this->etatSuivant);
-            this->ihmSimu->setLabelLigne(InterfaceDonnees::LIGNES_EN_COURS+1);
+            this->ihmSimu->emit refreshCadres();
         }
+        else if(this->etatPresent == PILOTAGE_ELECTROAIMANT) {
+            for(int i = 0; i < 24; i++) {
+                InterfaceSimu::valEA[i] = false;
+            }
+            this->ihmSimu->emit refreshCadres();
+        }
+        this->ihmSimu->setLabelEtatPresent(this->etatSuivant);
+        this->ihmSimu->setLabelLigne(InterfaceDonnees::LIGNES_EN_COURS+1);
     }
 
     //BLOC M
