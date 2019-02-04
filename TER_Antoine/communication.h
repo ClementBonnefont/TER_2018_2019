@@ -1,7 +1,7 @@
 #ifndef COMMUNICATION_H
 #define COMMUNICATION_H
 
-#include <wiringPi.h>
+//#include <wiringPi.h>
 
 class Communication
 {

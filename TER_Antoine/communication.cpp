@@ -7,15 +7,15 @@ unsigned long Communication::precedentOctets = 0x00000000 ;
 
 Communication::Communication()
 {
-    wiringPiSetup();
-    pinMode(pinTOR, INPUT);
-    pinMode(SER, OUTPUT);
-    pinMode(RCLK, OUTPUT);
-    pinMode(SRCLK, OUTPUT);
-    digitalWrite(SER, 0);
-    digitalWrite(SRCLK, 0);
-    digitalWrite(RCLK, 0);
-    digitalWriteSPI(0);
+//    wiringPiSetup();
+//    pinMode(pinTOR, INPUT);
+//    pinMode(SER, OUTPUT);
+//    pinMode(RCLK, OUTPUT);
+//    pinMode(SRCLK, OUTPUT);
+//    digitalWrite(SER, 0);
+//    digitalWrite(SRCLK, 0);
+//    digitalWrite(RCLK, 0);
+//    digitalWriteSPI(0);
 
 //    /*Implementation de la clock pour de maj des drivers
 //    * Val max 19.2 MHz -- 19200000
@@ -36,11 +36,11 @@ Communication::Communication()
 }
 
 int Communication::digitalReadValTor(){
-    return digitalRead(pinTOR);
+//    return digitalRead(pinTOR);
 }
 
 void Communication::delayMS(int x) {
-    delayMicroseconds(x * 1000);
+//    delayMicroseconds(x * 1000);
 }
 
 //charger sur les 3 registres de 8 bit à la fois
@@ -62,7 +62,7 @@ void Communication::sipo(unsigned long byte)
 
     for (i=0; i<32 ;i++)
     {
-        digitalWrite(SER,(byte & (0x80000000 >> i)));
+//        digitalWrite(SER,(byte & (0x80000000 >> i)));
         pulse(SRCLK);
     }
 
@@ -71,8 +71,8 @@ void Communication::sipo(unsigned long byte)
 //Front montant
 void Communication::pulse(int pin)
 {
-    digitalWrite(pin, 1);
-    digitalWrite(pin, 0);
+//    digitalWrite(pin, 1);
+//    digitalWrite(pin, 0);
 }
 
 

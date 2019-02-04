@@ -49,7 +49,8 @@ unsigned long MachineAEtat::listToHexa(QList<int> l) {
 
 void MachineAEtat::activer() {
     //BLOC F
-    if(this->etatPresent == ATTENTE) {
+    switch(this->etatPresent) {
+    case ATTENTE :
         if(InterfaceDonnees::URGENCE) {
             InterfaceDonnees::URGENCE = false;
             this->etatSuivant = ETAT_URGENCE;
@@ -62,8 +63,9 @@ void MachineAEtat::activer() {
         }
         else
             this->etatSuivant = this->etatPresent;
-    }
-    else if(this->etatPresent == PILOTAGE_ELECTROAIMANT) {
+        break;
+
+    case PILOTAGE_ELECTROAIMANT :
         if(InterfaceDonnees::URGENCE) {
             InterfaceDonnees::URGENCE = false;
             this->etatSuivant = ETAT_URGENCE;
@@ -84,8 +86,9 @@ void MachineAEtat::activer() {
         }
         else
             this->etatSuivant = this->etatPresent;
-    }
-    else if(this->etatPresent == ETAT_PAUSE) {
+        break;
+
+    case ETAT_PAUSE :
         if(InterfaceDonnees::URGENCE) {
             InterfaceDonnees::URGENCE = false;
             InterfaceDonnees::PAUSE = false;
@@ -109,8 +112,9 @@ void MachineAEtat::activer() {
         }
         else
             this->etatSuivant = this->etatPresent;
-    }
-    else if(this->etatPresent == PROCHAINE_LIGNE) {
+        break;
+
+    case PROCHAINE_LIGNE :
         if(InterfaceDonnees::URGENCE) {
             InterfaceDonnees::URGENCE = false;
             this->etatSuivant = ETAT_URGENCE;
@@ -125,7 +129,7 @@ void MachineAEtat::activer() {
             this->ihm->emit refreshBouton();
             this->etatSuivant = ETAT_PAUSE;
         }
-        else if(!/*InterfaceSimu::valTOR*/Communication::digitalReadValTor()) {
+        else if(/*!InterfaceSimu::valTOR*/ !Communication::digitalReadValTor()) {
             calculProchaineLigne();
             this->ihm->emit refreshLigne();
             this->vectLigne = InterfaceDonnees::CARTON_EN_COURS->getLigneNoirBlanc(InterfaceDonnees::LIGNES_EN_COURS);
@@ -134,8 +138,9 @@ void MachineAEtat::activer() {
         }
         else
             this->etatSuivant = this->etatPresent;
-    }
-    else if(etatPresent == ETAT_URGENCE) {
+        break;
+
+    case ETAT_URGENCE :
         if(InterfaceDonnees::CARTON_EN_COURS->getChemin() == "" || InterfaceDonnees::FIN) {
             InterfaceDonnees::FIN = false;
             InterfaceDonnees::LIGNES_EN_COURS = 0;
@@ -150,9 +155,12 @@ void MachineAEtat::activer() {
         }
         else
             this->etatSuivant = this->etatPresent;
+        break;
+
+    default : this->etatSuivant = ATTENTE;
     }
 
-    //Simulation
+     //Simulation
     if(this->etatPresent != this->etatSuivant) {
         if(this->etatSuivant == PILOTAGE_ELECTROAIMANT) {
             for(int i = 0; i < 24; i++) {

@@ -1,6 +1,5 @@
 INPUT(
 ./debug\ControllerCarton.o
-./debug\choixsens.o
 ./debug\mainwindow.o
 ./debug\machineaetat.o
 ./debug\threadmae.o
@@ -13,7 +12,6 @@ INPUT(
 ./debug\programme.o
 ./debug\protointerface.o
 ./debug\communication.o
-./debug\moc_choixsens.o
 ./debug\moc_mainwindow.o
 ./debug\moc_protointerface.o
 );
